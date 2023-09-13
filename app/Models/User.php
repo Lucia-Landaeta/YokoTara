@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -17,6 +18,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -27,6 +29,7 @@ class User extends Authenticatable
         'name',
         'lastname',
         'phone',
+        'locality_id',
         'email',
         'password',
     ];
@@ -60,4 +63,22 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    //Relacion uno a muchos
+    public function caseAnimals(){
+        return $this->hasMany(CaseAnimal::class);
+    }
+    public function recordCases(){
+        return $this->hasMany(RecordCase::class);
+    }
+    public function notices(){
+        return $this->hasMany(Notice::class);
+    }
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
+    //Relacion muchos a uno
+    public function locality(){
+        return $this->belongsTo(Locality::class);
+    }
 }

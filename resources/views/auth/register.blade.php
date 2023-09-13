@@ -1,3 +1,4 @@
+@livewireScripts
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
@@ -24,6 +25,10 @@
                 <x-input id="phone" class="block mt-1 w-full" type="number" name="phone" :value="old('phone')" required autocomplete="phone" />
             </div>
 
+            <div class="mt-4">
+                @livewire('select')
+            </div>
+            
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
