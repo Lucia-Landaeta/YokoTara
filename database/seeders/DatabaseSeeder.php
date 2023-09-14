@@ -4,7 +4,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Animal;
+use App\Models\CaseAnimal;
+use App\Models\Image;
+use App\Models\Post;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,17 +18,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Manejo de la contenido storage
+        Storage::deleteDirectory('public/posts'); //Elimina la carpeta post dentro de storage si es que ya existe para borrar las imagenes inecesarias
+        Storage::makeDirectory('public/posts');
+
         // Llamada a seeders
-        // $this->call(ProvinceSeeder::class);
         $this->call(LocalitySeeder::class);
         $this->call(UserSeeder::class);
         $this->call(StatusSeeder::class);
 
-        // \App\Models\User::factory(10)->create();
+        //Carga factories
+        $postCol = Post::factory(10)->create();
+        foreach ($postCol as $post) {
+            Image::factory(1)->create([
+                'imageable_id' => $post->id,
+                'imageable_type' => 'App\Models\Post'
+            ]);
+            $post->save();
+        }
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        CaseAnimal::factory(10)->create();
+        Animal::factory(10)->create();
     }
 }
