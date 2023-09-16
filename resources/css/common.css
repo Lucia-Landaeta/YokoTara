@@ -1,0 +1,25 @@
+.card{
+    @apply bg-white shadow-lg rounded overflow-hidden;
+}
+.card-title{
+    @apply text-sm text-gray-600 mb-2 leading-6;
+} 
+
+.container{
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;   
+}
+@media(min-width:640px){
+    .container{
+        @apply px-6;
+    }
+}
+@media(min-width:1024px){
+    .container{
+        @apply px-8;
+    }
+}
+
+.transitionArt{
+    @apply transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300;
+}
+

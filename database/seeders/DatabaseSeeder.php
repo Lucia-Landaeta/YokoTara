@@ -28,7 +28,18 @@ class DatabaseSeeder extends Seeder
         $this->call(StatusSeeder::class);
 
         //Carga factories
-        $postCol = Post::factory(10)->create();
+        $postCol = Post::factory(15)->create();
+
+        $cases = CaseAnimal::factory(15)->create();
+        $i = 0;
+        foreach ($cases as $case) {
+            ++$i;
+            $case->post_id = $i;
+            $case->save();
+            Animal::factory(1)->create([
+                'case_animal_id' => $i,
+            ]);
+        }
         foreach ($postCol as $post) {
             Image::factory(1)->create([
                 'imageable_id' => $post->id,
@@ -36,8 +47,5 @@ class DatabaseSeeder extends Seeder
             ]);
             $post->save();
         }
-
-        CaseAnimal::factory(10)->create();
-        Animal::factory(10)->create();
     }
 }

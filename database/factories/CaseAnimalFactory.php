@@ -22,7 +22,7 @@ class CaseAnimalFactory extends Factory
             'user_id'=>User::all()->random()->id,
             'date'=>now(),
             'case_animal_id'=>null,
-            'post_id'=>Status::all()->random()->id,
+            // 'post_id'=>Status::all()->random()->id,
             'status_id'=>Status::all()->random()->id
         ];
     }

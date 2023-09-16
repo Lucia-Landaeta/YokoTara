@@ -22,7 +22,6 @@ class AnimalFactory extends Factory
             'description'=>$this->faker->sentence(10),
             'gender'=>$this->faker->randomElement(['Macho','Hembra']),
             'stage'=>$this->faker->randomElement(['Cachorro','Joven','Adulto']),
-            'case_animal_id'=> CaseAnimal::all()->random()->id,
         ];
     }
 }
