@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->date('date_publish');
-            $table->enum('type',['En adopción','Perdido','Encontrado','Transito']);
+            $table->enum('type',['Adopción','Perdido','Encontrado','Transito']);
             $table->foreignId('status_id')->constrained();
             $table->foreignId('locality_id')->constrained();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');

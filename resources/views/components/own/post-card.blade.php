@@ -7,7 +7,7 @@
         <div class="flex justify-between items-align">
             <p class="card-title text-red-400 text-xs font-bold flex justify-around">{{ $post->type }}
             </p>
-            <p class="card-title text-gray-400 text-xs flex justify-around">{{ $post->date_publish }}
+            <p class="card-title text-gray-400 text-xs flex justify-around">{{Str::limit($post->dateFormat(), 27) }}
             </p>
         </div>
         <h1 class="card-title">{{ Str::limit($post->title), 50 }}</h1>

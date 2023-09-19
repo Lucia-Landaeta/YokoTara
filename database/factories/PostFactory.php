@@ -23,7 +23,7 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
             'date_publish' => $this->faker->date(),
-            'type' => $this->faker->randomElement(['En adopción', 'Perdido', 'Encontrado', 'Transito']),
+            'type' => $this->faker->randomElement(['Adopción', 'Perdido', 'Encontrado', 'Transito']),
             'status_id' => Status::all()->random()->id,
             'user_id' => User::all()->random()->id,
             'locality_id' => Locality::all()->random()->id

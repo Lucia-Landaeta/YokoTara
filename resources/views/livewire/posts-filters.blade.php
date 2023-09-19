@@ -15,16 +15,17 @@
                 {{-- Dropdown body --}}
                 <div class="absolute right-0 w-40 mt-1 py-2 bg-white bg-opacity-60 rounded shadow-xl" x-show="open"
                     x-on:click.away="open=false">
-                    <a class="btn-dropdown" wire:click="$set('type','En adopción')" x-on:click="open=false">En
+                    <a class="btn-dropdown" wire:click="$set('type','Adopción')" x-on:click="open=false">En
                         adopción</a>
                     <div class="py-2">
                         <hr>
                     </div>
-                    <a class="btn-dropdown" wire:click="$set('type','Encontrado')" x-on:click="open=false">Perdidos</a>
+                    <a class="btn-dropdown" wire:click="$set('type','Perdido')" x-on:click="open=false">Perdidos</a>
                     <div class="py-2">
                         <hr>
                     </div>
-                    <a class="btn-dropdown" wire:click="$set('type','Transito')" x-on:click="open=false">Encontrados</a>
+                    <a class="btn-dropdown" wire:click="$set('type','Encontrado')"
+                        x-on:click="open=false">Encontrados</a>
                 </div>
             </div>
             {{-- Botón-Dropdown/alpine --}}
@@ -48,8 +49,16 @@
     </div>
     {{-- Cards posts --}}
     <div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 pb-3">
-        @foreach ($posts as $post)
-            <x-own.post-card :post='$post' />
-        @endforeach
+        @if (count($posts)!=0)
+            @foreach ($posts as $post)
+                <x-own.post-card :post='$post' />
+            @endforeach
+        @else
+            <p><i class="fa-solid fa-frog"></i>&#160 No se encontraron coincidencias</p>
+        @endif
+
+    </div>
+    <div class="container pb-4">
+        {{ $posts->links() }}
     </div>
 </div>
