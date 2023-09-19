@@ -8,5 +8,6 @@
                 </div>
             </div>
         </section>
-
+{{-- Componente de filtrado --}}
+@livewire('posts-filters')
 </x-app-layout>
