@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -33,9 +34,14 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
-        return "PROXIMAMENTE: Página Show";
+        $similar = Post::where('id', '!=', $post->id)
+            ->where('status_id', 1)
+            ->where('type', $post->type)
+            ->where('locality_id', $post->locality_id)
+            ->latest('id')->take(6)->get();
+        return view('posts.show', compact('post','similar'));
     }
 
     /**

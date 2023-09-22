@@ -54,7 +54,7 @@
                 <x-own.post-card :post='$post' />
             @endforeach
         @else
-            <p><i class="fa-solid fa-frog"></i>&#160 No se encontraron coincidencias</p>
+            <p class="text-gray-400"><i class="fa-solid fa-frog"></i>&#160 No se encontraron coincidencias</p>
         @endif
 
     </div>
