@@ -24,13 +24,14 @@ class DatabaseSeeder extends Seeder
 
         // Llamada a seeders
         $this->call(LocalitySeeder::class);
+        $this->call(RolePermissionSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(StatusSeeder::class);
 
         //Carga factories
-        $postCol = Post::factory(50)->create();
+        $postCol = Post::factory(80)->create();
 
-        $cases = CaseAnimal::factory(50)->create();
+        $cases = CaseAnimal::factory(80)->create();
         $i = 0;
         foreach ($cases as $case) {
             ++$i;

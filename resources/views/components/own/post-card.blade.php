@@ -5,7 +5,7 @@
         alt="">
     <div class="px-6 py-4">
         <div class="flex justify-between items-align">
-            <p class="card-title text-red-400 text-xs font-bold flex justify-around">{{ $post->type }}
+            <p class="card-title text-red-400 text-xs font-bold flex justify-around">{{ $post['type'] }}
             </p>
             <p class="card-title text-gray-400 text-xs flex justify-around">{{Str::limit($post->dateFormat(), 27) }}
             </p>

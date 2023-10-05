@@ -50,13 +50,19 @@ class Post extends Model
     public function scopeType($query, $type)
     {
         if ($type) {
-            return $query->where('type', $type);
+            return $query->where('posts.type', $type);
+        }
+    }
+    public function scopePet($query, $pet)
+    {
+        if ($pet) {
+            return $query->join('case_animals', 'posts.id', '=', 'case_animals.post_id')->join('animals','case_animals.id','=','animals.case_animal_id')->where('animals.type',$pet);
         }
     }
     public function scopetime($query, $time)
     {
         if ($time) {
-            return $query->orderBy('date_publish', $time);
+            return $query->orderBy('posts.date_publish', $time);
         }
     }
     // Formato fecha con nombre de dia y mes

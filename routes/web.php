@@ -18,7 +18,7 @@ use App\Models\Post;
 
 Route::get('/',HomeController::class)->name('home');
 // Información
-Route::get('info',function(){return 'PROXIMAMENTE: Página Info';})->name('info');
+Route::get('info',function(){return view('info');})->name('info');
 // Auth
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
 Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');});
