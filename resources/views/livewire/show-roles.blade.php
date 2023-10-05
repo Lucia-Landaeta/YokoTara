@@ -27,12 +27,13 @@
                                 @csrf @method('delete')<i
                                     class="fa-solid fa-trash-can text-lg text-gray-500 cursor-pointer hover:text-red-500"></i>
                             </form>
-                            <i
-                                class="fa-solid fa-pencil text-lg text-gray-500 cursor-pointer ml-2 hover:text-blue-500"></i>
+                            {{-- @livewire('edit-rol', ['role' => $role], key($role->id)) --}}
+                            <a wire:click="edit({{$role}})">
+                                <i class="fa-solid fa-pencil cursor-pointer text-lg text-gray-500 ml-2 hover:text-blue-500"></i>
+                            </a>
                         </div>
                     </td>
                 </tr>
-
             @empty
                 <tr>
                     <td colspan="4">No existen roles</td>
@@ -40,4 +41,25 @@
             @endforelse
         </tbody>
     </table>
+{{-- Modal de edición de rol --}}
+    <x-dialog-modal wire:model='open_edit'>
+        <x-slot name='title'>
+            Editar Rol
+        </x-slot>
+        <x-slot name='content'>
+            <div class="mb-4">
+                <x-label value="Nombre del Rol" />
+                <x-input type="text" class="w-full mt-2" wire:model="role.name" />
+                <x-input-error for="role.name" />
+            </div>
+        </x-slot>
+        <x-slot name='footer'>
+            <x-danger-button class="mx-3" wire:click="$set('open_edit',false)">
+                Cancelar
+            </x-danger-button>
+            <x-button wire:click='update' wire:loading.attr="disabled" class="disabled:opacity-25">
+                Editar Rol
+            </x-button>
+        </x-slot>
+    </x-dialog-modal>
 </div>
