@@ -1,5 +1,5 @@
 <div>
-    @livewire('create-rol')
+    @livewire('role.create-role')
     <table class="w-full border-collapse bg-white text-left mt-6 text-sm text-gray-500">
         <thead class="bg-gray-50">
             <tr>
@@ -23,14 +23,14 @@
                     </td>
                     <td colspan="2" class="px-6 py-4">
                         <div class="flex justify-end gap-4">
-                            <form action="{{ route('admin.roles.destroy', $role) }}" method="POST">
-                                @csrf @method('delete')<i
-                                    class="fa-solid fa-trash-can text-lg text-gray-500 cursor-pointer hover:text-red-500"></i>
-                            </form>
-                            {{-- @livewire('edit-rol', ['role' => $role], key($role->id)) --}}
-                            <a wire:click="edit({{$role}})">
-                                <i class="fa-solid fa-pencil cursor-pointer text-lg text-gray-500 ml-2 hover:text-blue-500"></i>
+                            {{-- edit --}}
+                            <a wire:click="edit({{ $role }})">
+                                <i
+                                    class="fa-solid fa-pencil cursor-pointer text-lg text-gray-500 mr-3 hover:text-blue-500"></i>
                             </a>
+                            {{-- delete --}}
+                            <a wire:click="$emit('deleteRole', {{ $role->id }})" class="btn btn-danger"><i
+                                    class="fa-solid fa-trash-can text-lg text-gray-500 cursor-pointer hover:text-red-600"></i></a>
                         </div>
                     </td>
                 </tr>
@@ -41,7 +41,7 @@
             @endforelse
         </tbody>
     </table>
-{{-- Modal de edición de rol --}}
+    {{-- Modal de edición de rol --}}
     <x-dialog-modal wire:model='open_edit'>
         <x-slot name='title'>
             Editar Rol

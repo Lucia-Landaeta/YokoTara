@@ -5,5 +5,4 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\RoleController;
 
 Route::get('admin',[HomeController::class,'index'])->name('admin.index');
-
-Route::resource('admin/roles',RoleController::class)->names('admin.roles');
+Route::get('admin/roles',[RoleController::class,'index'])->name('admin.roles.index');

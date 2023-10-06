@@ -1,8 +1,8 @@
-<header class="flex w-full items-center justify-between border-b-2 border-gray-200 bg-white p-2">
+<header class="flex w-full items-center justify-between border-b-2 border-gray-200 bg-gradient-to-r from-sky-700 to-cyan-300 p-2">
     <!-- logo -->
     <div class="flex items-center space-x-2 ml-4">
         <a href="{{ route('home') }}">
-            <x-application-mark class="block h-9 w-auto" />
+            <x-application-logo class="block h-9 w-auto" />
         </a>
     </div>
     <!-- perfil -->
