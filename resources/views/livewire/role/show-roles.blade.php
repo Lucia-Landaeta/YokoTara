@@ -52,6 +52,17 @@
                 <x-input type="text" class="w-full mt-2" wire:model="role.name" />
                 <x-input-error for="role.name" />
             </div>
+            <div>
+                <p class="mb-2">Permisos</p>
+                @foreach ($permissions_db as $permission)
+                    <x-label>
+                    <input type="checkbox" value="{{ $permission->id }}" wire:model="permissions" {{ in_array($permission->id, $permissions)? "checked":"" }} />
+                    {{ $permission->name }}
+                </x-label>
+                @endforeach
+                <x-input-error for="permissions" />
+            </div>
+            Permissions: {{ var_export($permissions) }}
         </x-slot>
         <x-slot name='footer'>
             <x-danger-button class="mx-3" wire:click="$set('open_edit',false)">

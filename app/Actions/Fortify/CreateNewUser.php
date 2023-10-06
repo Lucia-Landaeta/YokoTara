@@ -19,7 +19,6 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
-        // dd($input);
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255','alpha:ascii'],
             'lastname' => ['required', 'string', 'max:255','alpha:ascii'],
@@ -28,6 +27,10 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+        ],[
+            'lastname.required' => 'El campo apellido es obligatorio.',
+            'phone.max' => 'El teléfono no debe tener más de 10 dígitos.',
+            'locality.required' => 'El campo localidad es obligatorio.'
         ])->validate();
 
         return User::create([
