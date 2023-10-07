@@ -29,6 +29,10 @@ class ShowUsers extends Component
         'user.name' => 'required'
     ];
 
+    public function updatingSearch(){
+        $this->resetPage();
+    }
+
     public function edit(User $user){
         $this->user = $user;
         $this->open_edit = true;

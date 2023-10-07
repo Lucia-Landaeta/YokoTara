@@ -131,9 +131,16 @@
                                     {{ __('Profile') }}
                                 </x-dropdown-link>
 
-                                <x-dropdown-link href="{{ route('admin.index') }}">
-                                    Administrador
-                                </x-dropdown-link>
+                                @role('Admin')
+                                    <x-dropdown-link href="{{ route('admin.index') }}">
+                                        Administrador
+                                    </x-dropdown-link>
+                                @endrole
+                                @role('Moder')
+                                    <x-dropdown-link href="{{ route('moder.index') }}">
+                                        Moderador
+                                    </x-dropdown-link>
+                                @endrole
 
                                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                     <x-dropdown-link href="{{ route('api-tokens.index') }}">
@@ -212,9 +219,16 @@
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
 
-                    <x-responsive-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.*')">
-                        Administrador
-                    </x-responsive-nav-link>
+                    @role('Admin')
+                        <x-responsive-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.*')">
+                            Administrador
+                        </x-responsive-nav-link>
+                    @endrole
+                    @role('Moder')
+                        <x-responsive-nav-link href="{{ route('moder.index') }}" :active="request()->routeIs('admin.*')">
+                            Moderador
+                        </x-responsive-nav-link>
+                    @endrole
 
                     @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                         <x-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
@@ -267,14 +281,14 @@
                 </div>
             </div>
         @else
-        <div class="pt-4 pb-1 border-t border-gray-200">
-            <x-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
-                Iniciar sesión
-            </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
-                Registrarse
-            </x-responsive-nav-link>
-        </div>
+            <div class="pt-4 pb-1 border-t border-gray-200">
+                <x-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
+                    Iniciar sesión
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                    Registrarse
+                </x-responsive-nav-link>
+            </div>
         @endauth
     </div>
 </nav>

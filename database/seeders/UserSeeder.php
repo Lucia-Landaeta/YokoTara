@@ -21,7 +21,27 @@ class UserSeeder extends Seeder
             'email'=>'admin@mail.com',
             'password'=> bcrypt('admin_1234'),
         ]);
+        $admi->assignRole('Admin');
 
-        User::factory(30)->create();
+        $admi = User::create([
+            'name'=>'User',
+            'lastname'=>'User',
+            'phone'=>151358964,
+            'locality_id'=>'5',
+            'email'=>'user@mail.com',
+            'password'=> bcrypt('user_1234'),
+        ]);
+        $admi->assignRole('User');
+
+        $admi = User::create([
+            'name'=>'Moder',
+            'lastname'=>'Moder',
+            'phone'=>153358964,
+            'locality_id'=>'1',
+            'email'=>'moder@mail.com',
+            'password'=> bcrypt('moder_1234'),
+        ]);
+        $admi->assignRole('Moder');
+        User::factory(25)->create();
     }
 }

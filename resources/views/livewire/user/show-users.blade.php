@@ -49,9 +49,9 @@
                                     class="items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
                                     <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>Habilitado
                                 @else
-                                <span
-                                    class="items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-xs font-semibold text-red-600">
-                                    <span class="h-1.5 w-1.5 rounded-full bg-red-600"></span>Deshabilitado
+                                    <span
+                                        class="items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-xs font-semibold text-red-600">
+                                        <span class="h-1.5 w-1.5 rounded-full bg-red-600"></span>Deshabilitado
                             @endif
                         </td>
                         <td class="p-4 font-normal text-gray-900">
@@ -61,9 +61,9 @@
                                         class="fa-solid fa-users-gear cursor-pointer text-lg text-gray-500 mr-3 hover:text-blue-500"></i>
                                 </a>
                                 {{-- Disable --}}
-                                <a > <i wire:click="$emit('deleteUser', {{ $user->id }})"
-                                    class="fa-solid fa-user-lock cursor-pointer text-lg text-gray-500 mr-3 hover:text-blue-500"></i>
-                            </a>
+                                <a> <i wire:click="$emit('deleteUser', {{ $user->id }})"
+                                        class="fa-solid fa-user-lock cursor-pointer text-lg text-gray-500 mr-3 hover:text-blue-500"></i>
+                                </a>
                             </div>
                         </td>
                     </tr>
@@ -75,8 +75,8 @@
             </tbody>
         </table>
         <div class="container bg-white py-4 mt-1">
-        {{ $users->links() }}
-    </div>
+            {{ $users->links() }}
+        </div>
     @else
         <div class="px-10 py-4">
             <p class="text-gray-400"><i class="fa-solid fa-frog"></i>&#160 No se encontraron coincidencias</p>

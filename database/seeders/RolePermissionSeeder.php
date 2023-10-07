@@ -31,6 +31,6 @@ class RolePermissionSeeder extends Seeder
 
         // Asignación de permisos
 
-        $roleAdmin->getAllPermissions();
+        $roleAdmin->givePermissionTo([1,2,3,4,5,6,7]);
     }
 }
