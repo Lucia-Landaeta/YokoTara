@@ -12,16 +12,15 @@ class ShowUsers extends Component
     use WithPagination;
 
     public $search, $user, $open_edit = false, $roles = [];
-
+    protected $listeners =['disable'];
     public function render()
     {
         // Filtro por titulo o contenido
         $users = User::where('name', 'like', '%' . $this->search . '%')
             ->orWhere('lastname', 'like', '%' . $this->search . '%')
-            ->orderBy('id','desc')
-            ->get();
+            ->withTrashed()
+            ->paginate(7);
         $roles_db = Role::select('name')->get();
-        // $users = User::orderBy('id','desc')->paginate(8);
         return view('livewire.user.show-users',compact('users','roles_db'));
     }
 
@@ -40,5 +39,16 @@ class ShowUsers extends Component
         $this->user->syncRoles($this->roles);
         $this->reset(['open_edit']);
         $this->emit('alertSuccessP', 'Roles asignados exitosamente');
+    }
+
+    public function disable($userId){
+        
+        $user = User::withTrashed()->find($userId);
+        if ($user->deleted_at == null) {
+            $user->delete();
+        } else {
+            $user->deleted_at = null;
+            $user->save();
+        }        
     }
 }

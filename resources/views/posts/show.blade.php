@@ -11,11 +11,19 @@
                     <div class="flex mb-5">
                         <ul class="flex items-center">
                             <li class="mr-4 text-2xl">
+                                @if ($post->user == null)
+                                <div class="flex items-center mt-3 md:mt-1">
+                                        <i class="fa-regular fa-circle-user w-6 h-6 object-cover rounded-full shadow-lg mr-2 text-gray-200"></i>
+                                    <p class="text-sm text-gray-500">Usuario</p>
+                                </div>
+                                @else
                                 <div class="flex items-center mt-3 md:mt-1">
                                     <img class="w-6 h-6 object-cover rounded-full shadow-lg mr-2"
                                         src="{{ $post->user->profile_photo_url }}" alt="">
                                     <p class="text-sm text-gray-500">{{ $post->user->name }}</p>
                                 </div>
+                                @endif
+
                             </li>
                             <li class="text-2xl ml-4 mt-px">
                                 <p class="text-sm text-gray-500"> <i

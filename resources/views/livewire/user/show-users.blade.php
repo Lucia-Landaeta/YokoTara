@@ -43,18 +43,27 @@
                         <td class="p-4 font-normal text-gray-900">
                             {{ $user['phone'] }}
                         </td>
-                        <td class="p-4">
-                            <div class="flex justify-center">
-                                {{-- disable --}}
-                                <div class="">
-                                    <i class="fa-solid {{ $user->delete_at == null ? 'fa-toggle-on text-green-400 hover:text-gray-400' : 'fa-toggle-off' }} cursor-pointer text-gray-500 text-2xl"></i>
-                                </div>
-                            </div>
+                        <td class="p-4 font-normal text-gray-900">
+                            @if ($user->deleted_at == null)
+                                <span
+                                    class="items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>Habilitado
+                                @else
+                                <span
+                                    class="items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-xs font-semibold text-red-600">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-red-600"></span>Deshabilitado
+                            @endif
                         </td>
                         <td class="p-4 font-normal text-gray-900">
                             <div class="flex justify-center">
-                                <a wire:click="edit({{ $user }})"> <i class="fa-solid fa-user-gear cursor-pointer text-lg text-gray-500 mr-3 hover:text-blue-500"></i>
+                                {{-- Edit --}}
+                                <a wire:click="edit({{ $user }})"> <i
+                                        class="fa-solid fa-users-gear cursor-pointer text-lg text-gray-500 mr-3 hover:text-blue-500"></i>
                                 </a>
+                                {{-- Disable --}}
+                                <a > <i wire:click="$emit('deleteUser', {{ $user->id }})"
+                                    class="fa-solid fa-user-lock cursor-pointer text-lg text-gray-500 mr-3 hover:text-blue-500"></i>
+                            </a>
                             </div>
                         </td>
                     </tr>
@@ -65,9 +74,9 @@
                 @endforelse
             </tbody>
         </table>
-        {{-- <div class="container bg-white py-4 mt-1">
+        <div class="container bg-white py-4 mt-1">
         {{ $users->links() }}
-    </div> --}}
+    </div>
     @else
         <div class="px-10 py-4">
             <p class="text-gray-400"><i class="fa-solid fa-frog"></i>&#160 No se encontraron coincidencias</p>
@@ -76,21 +85,22 @@
     {{-- Modal de asignación de rol --}}
     <x-dialog-modal wire:model='open_edit'>
         <x-slot name='title'>
-            Editar Rol
+            Asignar roles
         </x-slot>
         <x-slot name='content'>
             <div class="mb-4">
                 <x-label value="Usuario" />
-                <x-input type="text" class="w-auto mt-2 border-white" wire:model="user.name" disabled/>
+                <x-input type="text" class="w-auto mt-2 border-white" wire:model="user.name" disabled />
                 <x-input-error for="user.name" />
             </div>
             <div>
                 <p class="mb-2">Permisos</p>
                 @foreach ($roles_db as $role)
                     <x-label>
-                    <input class="rounded-full" type="checkbox" value="{{ $role->name }}" wire:model="roles" {{ in_array($role->name, $roles)? "checked":"" }} />&#160
-                    {{$role->name}}
-                </x-label>
+                        <input class="rounded-full" type="checkbox" value="{{ $role->name }}" wire:model="roles"
+                            {{ in_array($role->name, $roles) ? 'checked' : '' }} />&#160
+                        {{ $role->name }}
+                    </x-label>
                 @endforeach
                 <x-input-error for="roles" />
             </div>
