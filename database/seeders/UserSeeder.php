@@ -42,6 +42,12 @@ class UserSeeder extends Seeder
             'password'=> bcrypt('moder_1234'),
         ]);
         $admi->assignRole('Moder');
-        User::factory(25)->create();
+
+        for ($i=0; $i < 25; $i++) { 
+            $user = \App\Models\User::factory()->create();
+            $user->assignRole('User');
+        }
+
+
     }
 }

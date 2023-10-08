@@ -33,7 +33,7 @@ class CreateNewUser implements CreatesNewUsers
             'locality.required' => 'El campo localidad es obligatorio.'
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'lastname' => $input['lastname'],
             'phone' => $input['phone'],
@@ -41,5 +41,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+        $user->assignRole('User');
+        return $user;
     }
 }
