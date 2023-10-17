@@ -34,6 +34,11 @@
                             {{ $nav_link['name'] }}
                         </x-nav-link>
                     @endforeach
+                    @can('showCase')
+                        <x-nav-link >
+                            Casos
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 

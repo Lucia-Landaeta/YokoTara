@@ -30,3 +30,6 @@
 .btn-dropdown{
     @apply cursor-pointer transition-colors block py-2 px-4 text-sm text-gray-900 font-bold rounded hover:bg-sky-600 hover:text-white
 }
+.form-control{
+    @apply border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm
+}

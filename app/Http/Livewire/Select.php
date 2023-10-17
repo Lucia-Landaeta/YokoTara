@@ -8,7 +8,8 @@ use Livewire\Component;
 
 class Select extends Component
 {
-    public $province, $locality;
+    public $locality;
+    public $province;
     public $provinces = [], $localities = [];
 
     public function mount(){
@@ -24,4 +25,9 @@ class Select extends Component
     {
         return view('livewire.select');
     }
+
+    public function updatedLocality()
+{
+	$this->emitUp('totalUpdated', $this->locality);
+}
 }

@@ -68,6 +68,9 @@
             </div>
         </div>
     </div>
+    @can('createPost')
+        <div class="container"> @livewire('moder.create-post')</div>
+    @endcan
     {{-- Cards posts --}}
     <div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 pb-3">
         @if (count($posts) != 0)

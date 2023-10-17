@@ -53,7 +53,7 @@
                         <p class="font-bold text-xl text-red-400 mb-3">{{ $post->type }}</p>
                         <h2 class="font-bold text-lg">Tipo</h2>
                         <p class="text-gray-700 text-base">
-                            {{ $post->animal->type }}
+                            {{ $post->animal->type_animal }}
                         </p>
                         <h2 class="font-bold text-lg mt-3">Descripción</h2>
                         <p class="text-gray-700 text-base">
