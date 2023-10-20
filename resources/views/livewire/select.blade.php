@@ -17,6 +17,7 @@
             @if ($localities->count() == 0)
                 <option value="">Elija provincia antes</option>
             @else
+            <option value="">Seleccione una localidad</option>
                 @foreach ($localities as $locality)
                     <option value="{{ $locality->id }}">{{ $locality->name }}</option>
                 @endforeach
