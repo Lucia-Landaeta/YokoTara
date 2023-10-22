@@ -15,7 +15,7 @@ class CreatePost extends Component
     use WithFileUploads;
 
     public $open = false;
-    public $title, $content, $image, $locality, $identifier, $type, $type_animal, $gender, $stage, $previous_case = false, $case = null;
+    public $title, $content, $image, $locality, $identifier, $type, $type_animal, $gender, $stage, $previous_case = false, $case = null,$pseudonym;
 
     protected $listeners = ['totalUpdated' => 'doSomething'];
     public function mount()
@@ -32,6 +32,7 @@ class CreatePost extends Component
         'type_animal' => 'required',
         'gender' => 'required',
         'stage' => 'required',
+        'pseudonym' => 'required'
     ];
     protected $messages = [
         'locality' => 'El campo localidad es obligatorio.',
@@ -42,6 +43,7 @@ class CreatePost extends Component
     public function save()
     {
         try {
+            $this->validate();
             $newPost = Post::create([
                 'title' => $this->title,
                 'description' => $this->content,
@@ -60,7 +62,8 @@ class CreatePost extends Component
                 'user_id' => auth()->id(),
                 'date' => Carbon::now()->format('Y-m-d'),
                 'status_id' => 1,
-                'post_id' => $newPost->id
+                'post_id' => $newPost->id,
+                'pseudonym'=> $this->pseudonym
             ]);
             if ($this->previous_case) {
                 $new_case->case_animal_id = (int)$this->case;
@@ -71,7 +74,7 @@ class CreatePost extends Component
                 'description' => 'description',
                 'gender' => $this->gender,
                 'stage' => $this->stage,
-                'case_animal_id' => $new_case->id
+                'case_animal_id' => $new_case->id,
             ]);
 
             $this->reset(['open', 'title', 'content', 'image']);

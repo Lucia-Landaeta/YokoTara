@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('case_animals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
+            $table->string('pseudonym');
             $table->date('date');
             $table->foreignId('case_animal_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('post_id')->nullable()->constrained()->onDelete('set null');

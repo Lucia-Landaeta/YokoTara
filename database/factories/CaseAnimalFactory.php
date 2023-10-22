@@ -21,6 +21,7 @@ class CaseAnimalFactory extends Factory
         return [
             'user_id'=>User::all()->random()->id,
             'date'=>now(),
+            'pseudonym'=>$this->faker->word(),
             'case_animal_id'=>null,
             // 'post_id'=>Status::all()->random()->id,
             'status_id'=>Status::all()->random()->id

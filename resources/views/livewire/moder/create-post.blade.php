@@ -110,6 +110,11 @@
                 <section>
                     <h2 class="font-bold mt-2">Datos del caso</h2>
                     <hr class=" mb-4">
+                    <div class="mb-4">
+                        <x-label value="Pseudonimo" />
+                        <x-input type="text" class="w-full mt-2" wire:model.defer='pseudonym' placeholder="Pseudonimo debe ser representativo del caso" />
+                        <x-input-error class="mt-1" for="pseudonym" />
+                    </div>
                     <p>¿Existe un caso previo relacionado?</p>
                     <div x-data="{ open: false }" class="mt-2">
                         <x-label id="previous_case" />
@@ -121,7 +126,7 @@
                                 class="w-full mt-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
                                 <option value="null">Seleccione un tipo</option>
                                 @foreach ($cases_db as $case)
-                                    <option value="{{ $case->id }}">{{ $case->id }}</option>
+                                    <option value="{{ $case->id }}">{{ $case->pseudonym}}</option>
                                 @endforeach
                             </select>
                             <x-input-error class="mt-1" for="case" />
