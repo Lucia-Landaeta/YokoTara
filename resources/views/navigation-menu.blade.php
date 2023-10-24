@@ -35,7 +35,7 @@
                         </x-nav-link>
                     @endforeach
                     @can('showCase')
-                        <x-nav-link >
+                        <x-nav-link href="{{route('cases.index')}}" active="{{ request()->routeIs('cases.*') }}" >
                             Casos
                         </x-nav-link>
                     @endcan

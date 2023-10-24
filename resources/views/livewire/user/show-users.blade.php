@@ -22,7 +22,8 @@
                     <th scope="col" class="p-4 font-medium text-gray-900">Email</th>
                     <th scope="col" class="p-4 font-medium text-gray-900">Teléfono</th>
                     <th scope="col" class="p-4 font-medium text-gray-900">Habilitado</th>
-                    <th scope="col" class="p-4 font-medium text-gray-900">Asignar Rol</th>
+                    <th scope="col" class="pt-4 pb-4 font-medium text-gray-900"><span>Asignar Rol</span> <span
+                            class="ml-6">Habilitar</span> </th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 border-t border-gray-100">
@@ -56,14 +57,23 @@
                         </td>
                         <td class="p-4 font-normal text-gray-900">
                             <div class="flex justify-center">
-                                {{-- Edit --}}
-                                <a wire:click="edit({{ $user }})"> <i
-                                        class="fa-solid fa-users-gear cursor-pointer text-lg text-gray-500 mr-3 hover:text-blue-500"></i>
-                                </a>
+                                {{-- Edit rol --}}
+                                @if ($user->deleted_at == null)
+                                    <a wire:click="edit({{ $user }})"> <i
+                                            class="fa-solid fa-users-gear cursor-pointer text-lg text-gray-500 mr-5 pr-5 hover:text-blue-500"></i>
+                                    </a>
+                                @else
+                                    <i class="fa-solid fa-users-gear text-lg text-white mr-5 pr-5"></i>
+                                @endif
                                 {{-- Disable --}}
-                                <a> <i wire:click="$emit('deleteUser', {{ $user->id }})"
-                                        class="fa-solid fa-user-lock cursor-pointer text-lg text-gray-500 mr-3 hover:text-blue-500"></i>
-                                </a>
+                                @if ($user->id != 1)
+                                    <a> <i wire:click="$emit('deleteUser', {{ $user->id }})"
+                                            class="fa-solid fa-user-lock cursor-pointer text-lg text-gray-500 ml-3 pr-6 hover:text-blue-500"></i>
+                                    </a>
+                                @else
+                                    <i class="fa-solid fa-user-lock text-lg text-white ml-5 pr-6"></i>
+                                @endif
+
                             </div>
                         </td>
                     </tr>
@@ -104,7 +114,7 @@
                 @endforeach
                 <x-input-error for="roles" />
             </div>
-            Permissions: {{ var_export($roles) }}
+            Roles: {{ var_export($roles) }}
         </x-slot>
         <x-slot name='footer'>
             <x-danger-button class="mx-3" wire:click="$set('open_edit',false)">

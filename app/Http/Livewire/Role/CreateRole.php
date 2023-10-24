@@ -21,7 +21,7 @@ class CreateRole extends Component
             'name' => $this->name,
         ]);
         $role->syncPermissions($this->permissions);
-        $this->reset(['open', 'name']);
+        $this->reset(['open', 'name', 'permissions']);
         $this->emitTo('role.show-roles', 'render'); //se emite el evento render para que al crear un registro en la bd el componente se renderice y mostrando el nuevo registro
         $this->emit('alertSuccessP', 'El Rol se creo exitosamente');
     }

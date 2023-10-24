@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Moder\CaseController;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
 
@@ -25,3 +26,8 @@ Route::get('/dashboard', function () {return view('dashboard');})->name('dashboa
 // Post
 Route::get('posts',[PostController::class,'index'])->name('posts.index');
 Route::get('posts/{post}',[PostController::class,'show'])->name('posts.show');
+//Casos
+Route::group(['middleware' => ['can:showCase']], function () {
+    Route::get('cases',[CaseController::class,'index'])->name('cases.index');
+});
+

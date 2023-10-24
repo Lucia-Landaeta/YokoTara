@@ -77,7 +77,7 @@ class CreatePost extends Component
                 'case_animal_id' => $new_case->id,
             ]);
 
-            $this->reset(['open', 'title', 'content', 'image']);
+            $this->reset(['open', 'title', 'content', 'image','type_animal', 'gender', 'stage', 'type', 'locality', 'pseudonym', 'previous_case', 'case']);
             $this->identifier = rand();
             $this->emitTo('posts-filters', 'render'); //se estaemitiendo el evento render para que al crear un nuevo registro en la bd el componente se renderice y muestro el nuevo registro
             $this->emit('alertSuccessP', 'La publicación se creo exitosamente');
