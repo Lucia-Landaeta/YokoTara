@@ -17,7 +17,7 @@
                 <p class="mb-2">Permisos</p>
                 @foreach ($permissions_db as $permission)
                     <x-label>
-                    <input type="checkbox" value="{{ $permission->id }}" wire:model="permissions" />&#160
+                    <input class="rounded-full" type="checkbox" value="{{ $permission->id }}" wire:model="permissions" />&#160
                     {{ $permission->name }}
                 </x-label>
                 @endforeach

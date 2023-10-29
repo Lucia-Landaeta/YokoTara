@@ -1,4 +1,5 @@
 <x-app-layout>
+    <div class="h-10 mb-8"></div>
     <div class="container pb-4">
         <div class="max-w rounded overflow-hidden shadow-lg bg-white mt-5 mr-4 px-6 py-4">
             <h1 class="font-bold text-cyan-600 text-2xl mb-5">{{ $post->title }}</h1>
@@ -12,16 +13,17 @@
                         <ul class="flex items-center">
                             <li class="mr-4 text-2xl">
                                 @if ($post->user == null)
-                                <div class="flex items-center mt-3 md:mt-1">
-                                        <i class="fa-regular fa-circle-user w-6 h-6 object-cover rounded-full shadow-lg mr-2 text-gray-200"></i>
-                                    <p class="text-sm text-gray-500">Usuario</p>
-                                </div>
+                                    <div class="flex items-center mt-3 md:mt-1">
+                                        <i
+                                            class="fa-regular fa-circle-user w-6 h-6 object-cover rounded-full shadow-lg mr-2 text-gray-200"></i>
+                                        <p class="text-sm text-gray-500">Usuario</p>
+                                    </div>
                                 @else
-                                <div class="flex items-center mt-3 md:mt-1">
-                                    <img class="w-6 h-6 object-cover rounded-full shadow-lg mr-2"
-                                        src="{{ $post->user->profile_photo_url }}" alt="">
-                                    <p class="text-sm text-gray-500">{{ $post->user->name }}</p>
-                                </div>
+                                    <div class="flex items-center mt-3 md:mt-1">
+                                        <img class="w-6 h-6 object-cover rounded-full shadow-lg mr-2"
+                                            src="{{ $post->user->profile_photo_url }}" alt="">
+                                        <p class="text-sm text-gray-500">{{ $post->user->name }}</p>
+                                    </div>
                                 @endif
 
                             </li>
@@ -34,21 +36,6 @@
                             </li>
                         </ul>
                     </div>
-                    {{-- <section class="ml-2 md:ml-7 mb-4">
-                        <div class="grid grid-cols-1 md:grid-cols-2 mr-0 pr-0">
-                            <div class="flex items-center mt-3 md:mt-1">
-                                <img class="w-6 h-6 object-cover rounded-full shadow-lg mr-2"
-                                    src="{{ $post->user->profile_photo_url }}" alt="">
-                                <p class="text-sm text-gray-500">{{ $post->user->name }}</p>
-                            </div>
-                            <div class="mt-2 md:mt-1">
-                                <p class="text-sm text-gray-500"> <i
-                                        class="fa-regular fa-calendar-days text-sky-700"></i>&ensp;{{ $post->dateFormat() }} -
-                                    {{ $post->locality->name }}
-                                </p>
-                            </div>
-                        </div>
-                    </section> --}}
                     <section class="ml-2 md:ml-7">
                         <p class="font-bold text-xl text-red-400 mb-3">{{ $post->type }}</p>
                         <h2 class="font-bold text-lg">Tipo</h2>
@@ -63,11 +50,11 @@
                         <h2 class="font-bold text-lg mt-3 mb-1">Género</h2>
                         <div class="flex ">
                             <ul class="flex">
-                                <li class="mr-2 text-2xl">
+                                <li class="mr-2 text-3xl">
                                     <abbr title="Hembra"><i
                                             class="fa fa-venus {{ $post->animal->gender == 'Hembra' ? 'text-red-400' : 'text-gray-400' }}"></i></abbr>
                                 </li>
-                                <li class="text-2xl">
+                                <li class="text-3xl">
                                     <abbr title="Macho"><i
                                             class="fa fa-mars {{ $post->animal->gender == 'Macho' ? 'text-red-400' : 'text-gray-400' }}"></i>
                                 </li>
@@ -76,15 +63,15 @@
                         {{-- stage --}}
                         <h2 class="font-bold text-lg mt-3">Etapa</h2>
                         <ul class="flex">
-                            <li class="mr-3 mt-1 text-lg">
+                            <li class="mr-3 mt-1 text-xl">
                                 <abbr title="Cachorro"><i
                                         class="fa fa-paw {{ $post->animal->stage == 'Cachorro' ? 'text-red-400' : 'text-gray-400' }}"></i>
                             </li>
-                            <li class="mr-3 mt-0.5 text-xl">
+                            <li class="mr-3 mt-0.5 text-2xl">
                                 <abbr title="Joven"><i
                                         class="fa fa-paw {{ $post->animal->stage == 'Joven' ? 'text-red-400' : 'text-gray-400' }}"></i>
                             </li>
-                            <li class="mr-3 text-2xl">
+                            <li class="mr-3 text-3xl">
                                 <abbr title="Adulto"><i
                                         class="fa fa-paw {{ $post->animal->stage == 'Adulto' ? 'text-red-400' : 'text-gray-400' }}"></i>
                             </li>
@@ -92,6 +79,8 @@
                     </section>
                 </div>
             </div>
+
+            @livewire('moder.create-notice', ['post' => $post])
         </div>
         {{-- <div class="px-6 pt-4 pb-2">
             <span
@@ -124,4 +113,6 @@
 
         </aside>
     </section>
+
+
 </x-app-layout>

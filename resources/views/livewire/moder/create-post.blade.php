@@ -124,7 +124,7 @@
                         <div x-show="open" class="mt-2">
                             <select wire:model="case"
                                 class="w-full mt-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
-                                <option value="null">Seleccione un tipo</option>
+                                <option value="null">Seleccione un caso</option>
                                 @foreach ($cases_db as $case)
                                     <option value="{{ $case->id }}">{{ $case->pseudonym}}</option>
                                 @endforeach

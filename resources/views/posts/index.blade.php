@@ -1,6 +1,7 @@
 <x-app-layout>
+    <div class="h-16"></div>
         {{-- SECCIÓN PORTADA --}}
-        <section class="bg-cover mb-0.5 shadow" style="background-image: url({{ asset('img/posts/portada.jpg') }})">
+        <section class="bg-cover mt-0.5 mb-0.5 shadow" style="background-image: url({{ asset('img/posts/portada.jpg') }})">
             <div class="container py-32">
                 <div class="w-full md:w-3/4 lg:w-1/2">
                     <h1 class="text-white font-bold text-4xl">Adoptar es un acto de amor</h1>
