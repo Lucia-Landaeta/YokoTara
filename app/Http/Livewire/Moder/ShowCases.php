@@ -12,7 +12,7 @@ class ShowCases extends Component
     public function render()
     {
         // Filtro por titulo o contenido
-        $cases = CaseAnimal::orderBy('id','desc')->paginate(17);;
+        $cases = CaseAnimal::orderBy('id','desc')->paginate(17);
         return view('livewire.moder.show-cases',compact('cases'));
     }
 }

@@ -35,8 +35,13 @@
                         </x-nav-link>
                     @endforeach
                     @can('showCase')
-                        <x-nav-link href="{{route('cases.index')}}" active="{{ request()->routeIs('cases.*') }}" >
+                        <x-nav-link href="{{ route('cases.index') }}" active="{{ request()->routeIs('cases.*') }}">
                             Casos
+                        </x-nav-link>
+                    @endcan
+                    @can('showNotice')
+                        <x-nav-link href="{{ route('notice.index') }}" active="{{ request()->routeIs('notice.*') }}">
+                            Aviso interes
                         </x-nav-link>
                     @endcan
                 </div>
@@ -199,6 +204,17 @@
                     {{ $nav_link['name'] }}
                 </x-responsive-nav-link>
             @endforeach
+            @can('showCase')
+                <x-responsive-nav-link href="{{ route('cases.index') }}" active="{{ request()->routeIs('cases.*') }}">
+                    Casos
+                </x-responsive-nav-link>
+            @endcan
+            @can('showNotice')
+                <x-responsive-nav-link href="{{ route('notice.index') }}" active="{{ request()->routeIs('notice.*') }}">
+                    Avisos interes
+                </x-responsive-nav-link>
+            @endcan
+
         </div>
 
         <!-- Responsive Settings Options -->

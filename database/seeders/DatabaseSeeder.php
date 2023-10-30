@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Animal;
 use App\Models\CaseAnimal;
 use App\Models\Image;
+use App\Models\Notice;
 use App\Models\Post;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
@@ -48,5 +49,6 @@ class DatabaseSeeder extends Seeder
             ]);
             $post->save();
         }
+        Notice::factory(4)->create();
     }
 }

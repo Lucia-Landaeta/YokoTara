@@ -57,4 +57,9 @@ class CreateNotice extends Component
             }
         }
     }
+
+    public function redirectLogin()
+    {
+        return redirect()->to('/login');
+    }
 }

@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="h-16"></div>
     {{-- SECCIÓN PORTADA --}}
-    <section class="bg-cover mb-0.5 mt-0.5 shadow py-32" style="background-image: url({{ asset('img/cases/port2.jpg') }})">
+    <section class="bg-cover mb-0.5 mt-0.5 shadow h-32" style="background-image: url({{ asset('img/cases/port22.jpg') }})">
         {{-- <div class="container py-32">
             <div class="w-full md:w-3/4 lg:w-1/2">
                 <h1 class="text-white font-bold text-4xl"></h1>

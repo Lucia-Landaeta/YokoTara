@@ -13,12 +13,14 @@
                 </button>
             @endif
         @else
-        <button class="bg-transparent text-pink-600 font-semibold hover:bg-pink-500 hover:border-transparent hover:text-white  py-2 px-4 border border-pink-500  rounded-lg">
-                    <i class="fa-regular fa-heart text-lg mr-2"></i>Logueate
+            <div x-data="{ open: false }" @mouseleave="open = false">
+                <button @mouseover="open = true" wire:click="redirectLogin"
+                    class="bg-transparent text-pink-600 font-semibold hover:bg-pink-500 hover:border-transparent hover:text-white py-2 px-4 border border-pink-500 rounded-lg">
+                    <i class="fa-regular fa-heart text-lg mr-2"></i> <span x-show="!open">Me interesa</span> <span
+                        x-show="open">Logueate</span>
                 </button>
+            </div>
         @endauth
-
-
     </div>
     <x-dialog-modal wire:model='open'>
         <x-slot name='title'>

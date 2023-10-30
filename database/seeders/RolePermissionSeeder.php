@@ -33,6 +33,9 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'createCase']);
         Permission::create(['name' => 'editCase']);
         Permission::create(['name' => 'deleteCase']);
+        // Permisos sobre avisos
+        Permission::create(['name' => 'showNotice']);
+        Permission::create(['name' => 'deleteNotice']);
         // ROLES
         $roleAdmin = Role::create(['name' => 'Admin']);
         $roleModer = Role::create(['name' => 'Moder']);
@@ -40,7 +43,7 @@ class RolePermissionSeeder extends Seeder
 
         // Asignación de permisos
 
-        $roleAdmin->givePermissionTo([1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14]);
-        $roleModer->givePermissionTo([8, 9, 10,11,12,13,14]);
+        $roleAdmin->givePermissionTo([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,15,16]);
+        $roleModer->givePermissionTo([8, 9, 10, 11, 12, 13, 14,15,16]);
     }
 }
