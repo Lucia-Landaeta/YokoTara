@@ -36,8 +36,8 @@
                                 {{ $notice->post_id }}</p>
                         </td>
                         <td class="p-4 font-normal text-gray-900">
-                            <button wire:click="$set('openAccept',true)" class="text-emerald-500 text-base/6 hover:text-green-300 font-bold mb-1">Aceptar</button> <br>
-                            <button wire:click="$set('openReject',true)" class="text-red-600 text-base/6 hover:text-red-300 font-bold">Rechazar</button>
+                            <button wire:click="acceptModal({{$notice}})" class="text-emerald-500 text-base/6 hover:text-green-300 font-bold mb-1">Aceptar</button> <br>
+                            <button wire:click="rejectModal({{$notice}})" class="text-red-600 text-base/6 hover:text-red-300 font-bold">Rechazar</button>
                         </td>
                     </tr>
                 @empty
@@ -90,18 +90,18 @@
 
     <x-dialog-modal wire:model='openAccept'>
         <x-slot name='title'>
-            Registro de aceptación de aviso de interés
+            <h2 class="font-bold text-green-500">Aceptación de aviso de interés</h2>
         </x-slot>
         <x-slot name='content'>
             <x-label value="Registre la razón de aceptación u observaciones realizadas" />
-            <textarea rows="6" class="form-control w-full mt-2" wire:model.defer='reasonAccept'></textarea>
-            <x-input-error class="mt-1" for="reasonAccept" />
+            <textarea rows="6" class="form-control w-full mt-2" wire:model.defer='reason'></textarea>
+            <x-input-error class="mt-1" for="reason" />
         </x-slot>
         <x-slot name='footer'>
             <x-danger-button class="mx-3" wire:click="$set('openAccept',false)">
                 Cancelar
             </x-danger-button>
-            <x-button wire:click='accept({{$notice->id}})' wire:loading.attr="disabled" class="disabled:opacity-25">
+            <x-button wire:click="accept({{$notice->id}})" wire:loading.attr="disabled" class="disabled:opacity-25">
                 Acceptar
             </x-button>
         </x-slot>
@@ -109,18 +109,18 @@
 
     <x-dialog-modal wire:model='openReject'>
         <x-slot name='title'>
-            Información de Publicación <hr class="mt-2">
+            <h2 class="font-bold text-red-500"> Rechazo de aviso de interés</h2> <hr class="mt-2">
         </x-slot>
         <x-slot name='content'>
             <x-label value="Registre la razón del rechazo u observaciones realizadas" />
-            <textarea rows="6" class="form-control w-full mt-2" wire:model.defer='reasonReject'></textarea>
-            <x-input-error class="mt-1" for="reasonReject" />
+            <textarea rows="6" class="form-control w-full mt-2" wire:model.defer='reason'></textarea>
+            <x-input-error class="mt-1" for="reason" />
         </x-slot>
         <x-slot name='footer'>
             <x-danger-button class="mx-3" wire:click="$set('openReject',false)">
                 Cancelar
             </x-danger-button>
-            <x-button wire:click='save' wire:loading.attr="disabled" class="disabled:opacity-25">
+            <x-button wire:click="reject({{$notice->id}})" wire:loading.attr="disabled" class="disabled:opacity-25">
                 Acceptar
             </x-button>
         </x-slot>
