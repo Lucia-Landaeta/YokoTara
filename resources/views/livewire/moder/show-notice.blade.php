@@ -42,7 +42,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4">No existen casos registrados</td>
+                        <td class="text-gray-400 p-3" colspan="4"><i class="fa-solid fa-frog mr-3"></i>No hay avisos de interés actualmente</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -101,9 +101,11 @@
             <x-danger-button class="mx-3" wire:click="$set('openAccept',false)">
                 Cancelar
             </x-danger-button>
+            @if ($notice)
             <x-button wire:click="accept({{$notice->id}})" wire:loading.attr="disabled" class="disabled:opacity-25">
                 Acceptar
             </x-button>
+            @endif
         </x-slot>
     </x-dialog-modal>
 
@@ -120,9 +122,11 @@
             <x-danger-button class="mx-3" wire:click="$set('openReject',false)">
                 Cancelar
             </x-danger-button>
+            @if ($notice)
             <x-button wire:click="reject({{$notice->id}})" wire:loading.attr="disabled" class="disabled:opacity-25">
                 Acceptar
             </x-button>
+            @endif
         </x-slot>
     </x-dialog-modal>
 </div>

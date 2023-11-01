@@ -59,7 +59,6 @@ class CreatePost extends Component
                 'imageable_type' => 'App\Models\Post'
             ]);
             $new_case = CaseAnimal::create([
-                'user_id' => auth()->id(),
                 'date' => Carbon::now()->format('Y-m-d'),
                 'status_id' => 1,
                 'post_id' => $newPost->id,
