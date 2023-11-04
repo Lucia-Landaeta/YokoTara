@@ -130,3 +130,51 @@ Livewire.on('rejectNotice', $noticeId => {
     }
   })
 })
+// notificación de eliminación de caso
+Livewire.on('deleteCase', $caseId => {
+  Swal.fire({
+    html: '<p><i class="fa-solid fa-triangle-exclamation text-4xl text-red-500 mb-2"></i> <br/> ¿Está seguro de querer deshabilitar el caso? </p>',
+    width:'350px', 
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar',
+    cancelButtonText: 'Cancelar',
+    reverseButtons:true,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Livewire.emitTo('moder.show-cases','disable', $caseId)
+      Swal.fire(
+        {
+          html: '<p><i class="fa-solid fa-circle-check text-4xl text-green-500 mb-2"></i><br/> Modificado con exito con exito!</p>',
+          confirmButtonText: 'Aceptar',
+          width:'300px'
+        }
+      )
+    }
+  })
+})
+// notificación de asignación de caso
+Livewire.on('assignCase', $caseId => {
+  Swal.fire({
+    html: '<p><i class="fa-solid fa-shield-dog text-4xl text-green-500 mb-2"></i> <br/> ¿Quiere tomar este caso? </p>',
+    width:'350px', 
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar',
+    cancelButtonText: 'Cancelar',
+    reverseButtons:true,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Livewire.emitTo('moder.show-cases','assign', $caseId)
+      Swal.fire(
+        {
+          html: '<p><i class="fa-solid fa-circle-check text-4xl text-green-500 mb-2"></i><br/> Modificado con exito con exito!</p>',
+          confirmButtonText: 'Aceptar',
+          width:'300px'
+        }
+      )
+    }
+  })
+})
