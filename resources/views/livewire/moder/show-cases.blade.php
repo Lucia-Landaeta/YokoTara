@@ -4,7 +4,7 @@
             <thead class="bg-amber-400">
                 <tr>
                     <th scope="col" class="p-4 font-medium text-gray-900">Id</th>
-                    <th scope="col" class="p-4 font-medium text-gray-900">Usuario</th>
+                    <th scope="col" class="p-4 font-medium text-gray-900">Responsable</th>
                     <th scope="col" class="p-4 font-medium text-gray-900">Pseudonimo</th>
                     <th scope="col" class="p-4 font-medium text-gray-900">Fecha creación</th>
                     <th scope="col" class="p-4 font-medium text-gray-900">Post</th>
@@ -58,16 +58,27 @@
                         <td class="p-4 font-normal text-gray-900">
                             {{-- @livewire('moder.modal-case', ['case' => $case],key($case->id)) --}}
 
-                            {{-- Asignar caso --}}
+                            {{-- Asignar caso a un moder --}}
                             @if ($case->status_id == 2 && $case->user_id == null)
-                                <button wire:click="$emit('assignCase', {{ $case->id }})"
-                                    class="text-emerald-500 hover:text-green-300 font-bold mb-1">Tomar
-                                    caso</button>
+                                <button wire:click="$emit('assignCase', {{ $case->id }})"><abbr
+                                        title="Tomar caso"><i
+                                            class="fa-regular fa-check-double text-gray-500 text-lg font-bold mb-1 hover:text-green-500"></i></button>
+                            @endif
+                            {{-- Asignar usuario --}}
+                            @if ($case->status_id == 1)
+                                <button wire:click="modalAssignUSer({{$case->id}})"><abbr title="Asignar usuario"><i
+                                            class="fa-solid fa-user-tag text-gray-500 text-lg font-bold mb-1 hover:text-orange-500"></i></button>
+                            @endif
+                            {{-- Ver registro --}}
+                            @if ($case->status_id == 2)
+                                <button ><abbr title="Ver registros"><i
+                                            class="fa-solid fa-folder text-gray-500 text-lg font-bold mb-1 ml-3 hover:text-blue-500"></i></button>
                             @endif
                             {{-- Deshabilitar --}}
-                            <a> <i wire:click="$emit('deleteCase', {{ $case->id }})"
-                                    class="fa-regular fa-trash-can cursor-pointer text-lg text-gray-500 ml-3 pr-6 hover:text-blue-500"></i>
-                            </a>
+                            <button> <abbr title="Finalizar"><i
+                                        wire:click="$emit('finishCase', {{ $case->id }})"
+                                        class="fa-regular fa-circle-xmark cursor-pointer text-lg text-gray-500 ml-3 pr-6 hover:text-red-500"></i>
+                            </button>
                         </td>
                     </tr>
                 @empty
@@ -125,6 +136,39 @@
                 wire:model="user_post">{{ $user_post }}</span>
         </x-slot>
         <x-slot name='footer'>
+        </x-slot>
+    </x-dialog-modal>
+
+    <x-dialog-modal wire:model='openU'>
+        <x-slot name='title'>
+            <h2 class="font-bold text-green-500">Asignar usuario interesado</h2>
+        </x-slot>
+        <x-slot name='content'>
+            <select wire:model="interested_user"
+                class="w-full mt-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                <option value="">Seleccione un usuario</option>
+                @if ($users)
+                    @foreach ($users as $user)
+                    <option value="{{$user->id}}">{{$user->name}} {{$user->lastname}}&#160 - &#160{{$user->email}}</option>
+                    @endforeach
+                @endif
+
+            </select>
+            <x-input-error class="mt-1" for="interested_user" />
+
+            <x-label class="mt-4" value="Registre la razón de aceptación u observaciones realizadas" />
+            <textarea rows="6" class="form-control w-full mt-2" wire:model.defer='reason'></textarea>
+            <x-input-error class="mt-1" for="reason" />
+        </x-slot>
+        <x-slot name='footer'>
+            <x-danger-button class="mx-3" wire:click="$set('openU',false)">
+                Cancelar
+            </x-danger-button>
+            <x-button wire:click="assignUser({{ $case->id }})" wire:loading.attr="disabled"
+                class="disabled:opacity-25">
+                Acceptar
+            </x-button>
+
         </x-slot>
     </x-dialog-modal>
 </div>

@@ -131,9 +131,9 @@ Livewire.on('rejectNotice', $noticeId => {
   })
 })
 // notificación de eliminación de caso
-Livewire.on('deleteCase', $caseId => {
+Livewire.on('finishCase', $caseId => {
   Swal.fire({
-    html: '<p><i class="fa-solid fa-triangle-exclamation text-4xl text-red-500 mb-2"></i> <br/> ¿Está seguro de querer deshabilitar el caso? </p>',
+    html: '<p><i class="fa-solid fa-triangle-exclamation text-4xl text-red-500 mb-2"></i> <br/> ¿Está seguro de querer finalizar el caso? </p>',
     width:'350px', 
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -143,10 +143,10 @@ Livewire.on('deleteCase', $caseId => {
     reverseButtons:true,
   }).then((result) => {
     if (result.isConfirmed) {
-      Livewire.emitTo('moder.show-cases','disable', $caseId)
+      Livewire.emitTo('moder.show-cases','finish', $caseId)
       Swal.fire(
         {
-          html: '<p><i class="fa-solid fa-circle-check text-4xl text-green-500 mb-2"></i><br/> Modificado con exito con exito!</p>',
+          html: '<p><i class="fa-solid fa-circle-check text-4xl text-green-500 mb-2"></i><br/> Realizado con exito!</p>',
           confirmButtonText: 'Aceptar',
           width:'300px'
         }
@@ -170,7 +170,7 @@ Livewire.on('assignCase', $caseId => {
       Livewire.emitTo('moder.show-cases','assign', $caseId)
       Swal.fire(
         {
-          html: '<p><i class="fa-solid fa-circle-check text-4xl text-green-500 mb-2"></i><br/> Modificado con exito con exito!</p>',
+          html: '<p><i class="fa-solid fa-circle-check text-4xl text-green-500 mb-2"></i><br/> Caso asignado con exito!</p>',
           confirmButtonText: 'Aceptar',
           width:'300px'
         }
