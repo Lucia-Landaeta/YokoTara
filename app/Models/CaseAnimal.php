@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+
 class CaseAnimal extends Model
 {
     use HasFactory;
@@ -45,12 +46,26 @@ class CaseAnimal extends Model
     {
         return $this->hasMany(RecordCase::class);
     }
-        // Formato fecha con nombre de dia y mes
-        public function dateFormat(){
-            $dateC = new Carbon($this->date_publish);
-            $date = "".$dateC->day;
-            $date .= "/".Str::title($dateC->month);
-            $date .= "/".$dateC->year;
-            return $date;
-        } 
+    // Formato fecha con nombre de dia y mes
+    public function dateFormat()
+    {
+        $dateC = new Carbon($this->date_publish);
+        $date = "" . $dateC->day;
+        $date .= "/" . Str::title($dateC->month);
+        $date .= "/" . $dateC->year;
+        return $date;
+    }
+    // Query Scope (query personalizada) para manejo de filtrado de posts
+    public function scopeMycase($query, $user)
+    {
+        if ($user) {
+            return $query->where('case_animals.user_id', $user);
+        }
+    }
+    public function scopeStatus($query, $status)
+    {
+        if ($status) {
+            return $query->where('case_animals.status_id', $status);
+        }
+    }
 }

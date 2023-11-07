@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('status_id')->constrained();
             $table->foreignId('locality_id')->constrained();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

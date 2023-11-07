@@ -1,5 +1,45 @@
 <div>
     <div class="container">
+        {{-- Search --}}
+        <div class="px-2 pt-1 pb-4">
+            <div wire:model='search' action="" class="relative ">
+                <input type="search" placeholder="Buscar pseudonimo de caso"
+                    class="peer cursor-pointer relative z-10 h-12 w-full rounded-full border bg-transparent pl-16 outline-none focus:cursor-text focus:border-cyan-100 focus:pl-16 focus:pr-4" />
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="absolute inset-y-0 my-auto  h-8 w-12 border-r border-transparent stroke-gray-500 px-3.5 peer-focus:border-orange-300 border-gray-500 peer-focus:stroke-orange-500"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+        </div>
+        {{-- filtros --}}
+        <div class="container flex">
+            <button class="bg-transparent font-bold hover:bg-orange-200 h-12 rounded-lg text-orange-500 py-2 px-4 rounded-2xl mx-2 hover:bg-opacity-60  p-2" wire:click='resetFilters'>
+                <i class="fa-regular fa-rectangle-list mr-1"></i>
+                Todos los casos
+            </button>
+            <button class="bg-transparent font-bold hover:bg-orange-200 h-12 rounded-lg text-orange-500 py-2 px-4 rounded-2xl mx-2 hover:bg-opacity-60 p-2" x-on:click="open=!open"
+                wire:click="$set('myCases',{{ Auth::user()->id }})">
+                <i class="fa-solid fa-cat mr-2 "></i>
+                Mis casos
+            </button>
+            <div class="relative" x-data="{ open: false }">
+                <button class="bg-transparent font-bold hover:bg-orange-200 h-12 rounded-lg text-orange-500 py-2 px-4 rounded-2xl mx-2 hover:bg-opacity-60  p-2" x-on:click="open=!open">
+                    <i class="fa-solid fa-cat mr-2 "></i>
+                    Status
+                    <i class="fa-solid fa-caret-down text-orange-500 ml-2 invisible sm:visible"></i>
+                </button>
+                {{-- Dropdown body --}}
+                <div class="absolute right-0 w-40 mt-1 py-2 bg-white bg-opacity-60 rounded shadow-xl" x-show="open"
+                    x-on:click.away="open=false">
+                    <a class="cursor-pointer transition-colors block py-2 px-4 text-sm text-gray-900 font-bold rounded hover:bg-orange-400 hover:text-white py-3" wire:click="$set('status',2)" x-on:click="open=false">Control</a>
+                    <hr class="py-2">
+                    <a class="cursor-pointer transition-colors block py-2 px-4 text-sm text-gray-900 font-bold rounded hover:bg-orange-400 hover:text-white py-3" wire:click="$set('status',1)" x-on:click="open=false">Activo</a>
+                </div>
+            </div>
+        </div>
+        {{-- table --}}
         <table class="w-full border-collapse bg-white rounded-md text-left mt-3 text-sm text-gray-500">
             <thead class="bg-amber-400">
                 <tr>
@@ -9,7 +49,7 @@
                     <th scope="col" class="p-4 font-medium text-gray-900">Fecha creación</th>
                     <th scope="col" class="p-4 font-medium text-gray-900">Post</th>
                     <th scope="col" class="p-4 font-medium text-gray-900">Status</th>
-                    <th scope="col" class="p-4 font-medium text-gray-900">Deshabilitar</th>
+                    <th scope="col" class="p-4 font-medium text-gray-900">Operaciones</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 border-t border-gray-100">
@@ -66,29 +106,30 @@
                             @endif
                             {{-- Asignar usuario --}}
                             @if ($case->status_id == 1)
-                                <button wire:click="modalAssignUSer({{$case->id}})"><abbr title="Asignar usuario"><i
+                                <button> <abbr title="Asignar usuario"><i wire:click="modalAssignUSer({{ $case->id }})"
                                             class="fa-solid fa-user-tag text-gray-500 text-lg font-bold mb-1 hover:text-orange-500"></i></button>
                             @endif
                             {{-- Ver registro --}}
                             @if ($case->status_id == 2)
-                                <button ><abbr title="Ver registros"><i
+                                <button><abbr title="Ver registros"><i
                                             class="fa-solid fa-folder text-gray-500 text-lg font-bold mb-1 ml-3 hover:text-blue-500"></i></button>
                             @endif
                             {{-- Deshabilitar --}}
-                            <button> <abbr title="Finalizar"><i
-                                        wire:click="$emit('finishCase', {{ $case->id }})"
+                            <button> <abbr title="Finalizar"><i wire:click="$emit('finishCase', {{ $case->id }})"
                                         class="fa-regular fa-circle-xmark cursor-pointer text-lg text-gray-500 ml-3 pr-6 hover:text-red-500"></i>
                             </button>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4">No existen casos registrados</td>
+                        <td class="text-gray-400 p-3" colspan="4"><i class="fa-solid fa-frog mx-3 "></i>No hay
+                            existen casos
+                        </td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
-        <div class="container bg-white py-4 mt-1 mb-3">
+        <div class="container bg-white py-4 mt-1">
             {{ $cases->links() }}
         </div>
     </div>
@@ -149,7 +190,8 @@
                 <option value="">Seleccione un usuario</option>
                 @if ($users)
                     @foreach ($users as $user)
-                    <option value="{{$user->id}}">{{$user->name}} {{$user->lastname}}&#160 - &#160{{$user->email}}</option>
+                        <option value="{{ $user->id }}">{{ $user->name }} {{ $user->lastname }}&#160 -
+                            &#160{{ $user->email }}</option>
                     @endforeach
                 @endif
 
@@ -164,10 +206,12 @@
             <x-danger-button class="mx-3" wire:click="$set('openU',false)">
                 Cancelar
             </x-danger-button>
-            <x-button wire:click="assignUser({{ $case->id }})" wire:loading.attr="disabled"
-                class="disabled:opacity-25">
-                Acceptar
-            </x-button>
+            @if ($case)
+                <x-button wire:click="assignUser({{ $case->id }})" wire:loading.attr="disabled"
+                    class="disabled:opacity-25">
+                    Acceptar
+                </x-button>
+            @endif
 
         </x-slot>
     </x-dialog-modal>

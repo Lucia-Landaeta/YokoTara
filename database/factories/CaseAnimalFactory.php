@@ -24,7 +24,7 @@ class CaseAnimalFactory extends Factory
             'pseudonym'=>$this->faker->word(),
             'case_animal_id'=>null,
             // 'post_id'=>Status::all()->random()->id,
-            'status_id'=>Status::all()->random()->id
+            'status_id'=>$this->faker->randomElement([1,2])
         ];
     }
 }

@@ -15,6 +15,7 @@ class ShowCases extends Component
 {
     use WithPagination;
     protected $listeners =['finish','assign'];
+    public $search, $status, $aUser, $myCases;
     public $open =false, $user, $name_user ='', $lastname_user, $email_user, $locality_user, $phone_user;
     public $openP =false, $post, $title_post, $type_post, $description_post, $date_post, $locality_post, $user_post;
     public $openU = false, $users, $interested_user, $reason, $case;
@@ -30,7 +31,11 @@ class ShowCases extends Component
 
     public function render()
     {
-        $cases = CaseAnimal::where('status_id','1')->orWhere('status_id','2')->orderBy('status_id','desc')->orderBy('id','desc')->paginate(7);
+        if ($this->search) {
+            $cases = CaseAnimal::where('pseudonym', 'like', '%' . $this->search . '%')->paginate(7);
+        } else {
+            $cases = CaseAnimal::mycase($this->myCases)->status($this->status)->orderBy('status_id','desc')->orderBy('id','desc')->paginate(7);
+        }
         return view('livewire.moder.show-cases',compact('cases'));
     }
 
@@ -58,6 +63,11 @@ class ShowCases extends Component
         $case = CaseAnimal::find($caseId);
         $case->status_id = 3;
         $case->save();
+        $case->delete();
+        $post = Post::find($case->post_id);
+        $post->status_id = 3;
+        $post->save();
+        $post->delete();
     }
     public function assign($caseId){
         $case = CaseAnimal::find($caseId);
@@ -86,5 +96,12 @@ class ShowCases extends Component
             'case_animal_id' => $this->case->id
         ]);
         $this->reset(['openU', 'reason', 'interested_user', 'case']);
+    }
+    public function updatingSearch(){
+        $this->resetPage();
+    }
+    public function resetFilters()
+    {
+        $this->reset(['myCases','status']);
     }
 }

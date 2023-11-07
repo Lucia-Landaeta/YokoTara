@@ -9,6 +9,7 @@ use App\Models\CaseAnimal;
 use App\Models\Image;
 use App\Models\Notice;
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 
