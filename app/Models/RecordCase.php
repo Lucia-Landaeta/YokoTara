@@ -20,4 +20,9 @@ class RecordCase extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+        //Relacion uno a muchos polimorfica
+        public function images()
+        {
+            return $this->morphMany(Image::class, 'imageable');
+        }
 }

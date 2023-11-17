@@ -80,10 +80,10 @@ class ShowNotice extends Component
             'case_animal_id' => $caseAn->id
         ]);
         $user = User::find($this->notice->user_id);
-        $this->sendMail($user,$post,$this->reason,true);
         $this->reset(['openAccept', 'reason']);
         $this->notice->delete();
         $this->emit('alertSuccessP', 'Aviso aceptado con exito.');
+        $this->sendMail($user,$post,$this->reason,true);
     }
     /** Se abre el modal de rechazo y se recupera el aviso correspondiente */
     public function rejectModal(Notice $notice)
@@ -104,10 +104,10 @@ class ShowNotice extends Component
             'case_animal_id' => $post->caseAnimal->id
         ]);
         $user = User::find($this->notice->user_id);
-        $this->sendMail($user,$post,$this->reason,false);
         $this->notice->delete();
         $this->reset(['openReject', 'reason']);
         $this->emit('alertSuccessP', 'Aviso rechazado con exito.');
+        $this->sendMail($user,$post,$this->reason,false);
     }
 
     /**Se envia un email al usuario para informarle de la decisión del aviso de interés */

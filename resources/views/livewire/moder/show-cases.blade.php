@@ -111,7 +111,7 @@
                             @endif
                             {{-- Ver registro --}}
                             @if ($case->status_id == 2)
-                                <button><abbr title="Ver registros"><i
+                                <button><abbr title="Ver registros"><i wire:click="redirectRecords({{$case->id, }})"
                                             class="fa-solid fa-folder text-gray-500 text-lg font-bold mb-1 ml-3 hover:text-blue-500"></i></button>
                             @endif
                             {{-- Deshabilitar --}}

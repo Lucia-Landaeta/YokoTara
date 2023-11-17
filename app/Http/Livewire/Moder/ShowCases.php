@@ -67,12 +67,14 @@ class ShowCases extends Component
         $post = Post::find($case->post_id);
         $post->status_id = 3;
         $post->save();
+        $post->notices()->delete();
         $post->delete();
     }
     public function assign($caseId){
         $case = CaseAnimal::find($caseId);
         $case->user_id = auth()->user()->id;
         $case->save();
+        
     }
     public function modalAssignUSer(CaseAnimal $case){
         $this->case = $case;
@@ -104,4 +106,8 @@ class ShowCases extends Component
     {
         $this->reset(['myCases','status']);
     }
+    public function redirectRecords($caseId){
+        return redirect()->route('records.index',$caseId);
+    }
+    
 }

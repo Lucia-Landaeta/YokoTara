@@ -134,7 +134,16 @@
                             <x-slot name="content">
                                 <!-- Account Management -->
                                 <div class="block px-4 py-2 text-xs text-gray-400">
-                                    {{ __('Manage Account') }}
+                                    Rol usuario:
+                                    @role('Admin')
+                                        Administrador
+                                    @endrole
+                                    @role('Moder')
+                                        Moderador
+                                    @endrole
+                                    @role('User')
+                                        General
+                                    @endrole
                                 </div>
 
                                 <x-dropdown-link href="{{ route('profile.show') }}">
@@ -146,11 +155,11 @@
                                         Administrador
                                     </x-dropdown-link>
                                 @endrole
-                                @role('Moder')
+                                {{-- @role('Moder')
                                     <x-dropdown-link href="{{ route('moder.index') }}">
                                         Moderador
                                     </x-dropdown-link>
-                                @endrole
+                                @endrole --}}
 
                                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                     <x-dropdown-link href="{{ route('api-tokens.index') }}">
@@ -245,11 +254,11 @@
                             Administrador
                         </x-responsive-nav-link>
                     @endrole
-                    @role('Moder')
+                    {{-- @role('Moder')
                         <x-responsive-nav-link href="{{ route('moder.index') }}" :active="request()->routeIs('admin.*')">
                             Moderador
                         </x-responsive-nav-link>
-                    @endrole
+                    @endrole --}}
 
                     @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                         <x-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
