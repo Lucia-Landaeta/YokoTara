@@ -112,6 +112,6 @@ class ShowNotice extends Component
 
     /**Se envia un email al usuario para informarle de la decisión del aviso de interés */
     public function sendMail($user,$post, $reason, $type){   
-        Mail::to($user->email)->send(new NoticeMailable(['user'=>$user,'post'=> $post,'reason'=> $reason,'type'=> $type]));
+        Mail::to($user->email)->queue(new NoticeMailable(['user'=>$user,'post'=> $post,'reason'=> $reason,'type'=> $type]));
     }
 }
