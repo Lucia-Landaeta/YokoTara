@@ -1,10 +1,9 @@
 <?php
 
+use App\Http\Controllers\DonationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Moder\CaseController;
 use App\Http\Controllers\PostController;
-use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +25,8 @@ Route::get('/dashboard', function () {return view('dashboard');})->name('dashboa
 // Post
 Route::get('posts',[PostController::class,'index'])->name('posts.index');
 Route::get('posts/{post}',[PostController::class,'show'])->name('posts.show');
+// Donaciones
+Route::get('donar',[DonationController::class,'index'])->name('donations.index');
+Route::get('donar/{id}',[DonationController::class,'show'])->name('donations.show');
 
 
