@@ -7,7 +7,7 @@ use App\Models\Post;
 use App\Models\RecordCase;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
+use Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -19,6 +19,7 @@ class ShowCases extends Component
     public $open =false, $user, $name_user ='', $lastname_user, $email_user, $locality_user, $phone_user;
     public $openP =false, $post, $title_post, $type_post, $description_post, $date_post, $locality_post, $user_post;
     public $openU = false, $users, $interested_user, $reason, $case, $show = false;
+    public $myCasesTag = false;
 
     protected $rules = [
         'reason' => 'required',
@@ -104,10 +105,20 @@ class ShowCases extends Component
     }
     public function resetFilters()
     {
-        $this->reset(['myCases','status']);
+        $this->reset(['myCases','status','myCasesTag']);
     }
     public function redirectRecords($caseId){
         return redirect()->route('records.index',$caseId);
+    }
+
+    public function myCasesSetTrue(){
+        $this->myCases = auth()->user()->id;
+        $this->myCasesTag = true;
+    }
+
+    public function myCasesSetFalse(){
+        $this->myCasesTag = false;
+        $this->reset(['myCases']);
     }
     
 }

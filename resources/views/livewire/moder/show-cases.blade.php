@@ -15,17 +15,23 @@
         </div>
         {{-- filtros --}}
         <div class="container flex">
-            <button class="bg-transparent font-bold hover:bg-orange-200 h-12 rounded-lg text-orange-500 py-2 px-4 rounded-2xl mx-2 hover:bg-opacity-60  p-2" wire:click='resetFilters'>
+            <button
+                class="bg-transparent font-bold hover:bg-orange-200 h-12 rounded-lg text-orange-500 py-2 px-4 rounded-2xl mx-2 hover:bg-opacity-60  p-2"
+                wire:click='resetFilters'>
                 <i class="fa-regular fa-rectangle-list mr-1"></i>
                 Todos los casos
             </button>
-            <button class="bg-transparent font-bold hover:bg-orange-200 h-12 rounded-lg text-orange-500 py-2 px-4 rounded-2xl mx-2 hover:bg-opacity-60 p-2" x-on:click="open=!open"
-                wire:click="$set('myCases',{{ Auth::user()->id }})">
+            <button
+                class="bg-transparent font-bold hover:bg-orange-200 h-12 rounded-lg text-orange-500 py-2 px-4 rounded-2xl mx-2 hover:bg-opacity-60 p-2"
+                x-on:click="open=!open" wire:click="myCasesSetTrue()">
                 <i class="fa-solid fa-cat mr-2 "></i>
                 Mis casos
             </button>
             <div class="relative" x-data="{ open: false }">
-                <button class="bg-transparent font-bold hover:bg-orange-200 h-12 rounded-lg text-orange-500 py-2 px-4 rounded-2xl mx-2 hover:bg-opacity-60  p-2" x-on:click="open=!open">
+                {{-- Dropdown --}}
+                <button
+                    class="bg-transparent font-bold hover:bg-orange-200 h-12 rounded-lg text-orange-500 py-2 px-4 rounded-2xl mx-2 hover:bg-opacity-60  p-2"
+                    x-on:click="open=!open">
                     <i class="fa-solid fa-cat mr-2 "></i>
                     Status
                     <i class="fa-solid fa-caret-down text-orange-500 ml-2 invisible sm:visible"></i>
@@ -33,15 +39,45 @@
                 {{-- Dropdown body --}}
                 <div class="absolute right-0 w-40 mt-1 py-2 bg-white bg-opacity-60 rounded shadow-xl" x-show="open"
                     x-on:click.away="open=false">
-                    <a class="cursor-pointer transition-colors block py-2 px-4 text-sm text-gray-900 font-bold rounded hover:bg-orange-400 hover:text-white py-3" wire:click="$set('status',2)" x-on:click="open=false">Control</a>
+                    <a class="cursor-pointer transition-colors block py-2 px-4 text-sm text-gray-900 font-bold rounded hover:bg-orange-400 hover:text-white py-3"
+                        wire:click="$set('status',2)" x-on:click="open=false">Control</a>
                     <hr class="py-2">
-                    <a class="cursor-pointer transition-colors block py-2 px-4 text-sm text-gray-900 font-bold rounded hover:bg-orange-400 hover:text-white py-3" wire:click="$set('status',1)" x-on:click="open=false">Activo</a>
+                    <a class="cursor-pointer transition-colors block py-2 px-4 text-sm text-gray-900 font-bold rounded hover:bg-orange-400 hover:text-white py-3"
+                        wire:click="$set('status',1)" x-on:click="open=false">Activo</a>
                     <hr class="py-2">
-                    <a class="cursor-pointer transition-colors block py-2 px-4 text-sm text-gray-900 font-bold rounded hover:bg-orange-400 hover:text-white py-3" wire:click="$set('status',3)" x-on:click="open=false">Finalizados</a>
+                    <a class="cursor-pointer transition-colors block py-2 px-4 text-sm text-gray-900 font-bold rounded hover:bg-orange-400 hover:text-white py-3"
+                        wire:click="$set('status',3)" x-on:click="open=false">Finalizados</a>
                 </div>
             </div>
-            {{-- ******************** --}}
-            
+            {{-- Tags --}}
+            <div class="ml-9 pt-2 border-l-2 pl-9">
+                @if ($status == 2)
+                    <span
+                        class="items-center gap-1 rounded-full bg-gray-100 px-3 py-2 text-xs font-semibold text-gray-600">Control
+                        <i class="fa-regular fa-circle-xmark text-base cursor-pointer ml-1 pt-1"
+                            wire:click="$set('status',0)"></i></span>
+                @endif
+                @if ($status == 1)
+                    <span
+                        class="items-center gap-1 rounded-full bg-gray-100 px-3 py-2 text-xs font-semibold text-gray-600">Activo
+                        <i class="fa-regular fa-circle-xmark text-base cursor-pointer ml-1 pt-1"
+                            wire:click="$set('status',0)"></i></span>
+                @endif
+                @if ($status == 3)
+                    <span
+                        class="items-center gap-1 rounded-full bg-gray-100 px-3 py-2 text-xs font-semibold text-gray-600">Finalizado
+                        <i class="fa-regular fa-circle-xmark text-base cursor-pointer ml-1 pt-1"
+                            wire:click="$set('status',0)"></i></span>
+                @endif
+            </div>
+            <div class="ml-3 pt-2 ">
+                @if ($myCasesTag == true)
+                    <span
+                        class="items-center gap-1 rounded-full bg-gray-100 px-3 py-2 text-xs font-semibold text-gray-600">Mis casos
+                        <i class="fa-regular fa-circle-xmark cursor-pointer ml-1 pt-1 text-base"
+                            wire:click="myCasesSetFalse()"></i></span>
+                @endif
+            </div>
         </div>
         {{-- table --}}
         <table class="w-full border-collapse bg-white rounded-md text-left mt-3 text-sm text-gray-500">
@@ -100,8 +136,6 @@
                             {{ $case['status']['name'] }}
                         </td>
                         <td class="p-4 font-normal text-gray-900">
-                            {{-- @livewire('moder.modal-case', ['case' => $case],key($case->id)) --}}
-
                             {{-- Asignar caso a un moder --}}
                             @if ($case->status_id == 2 && $case->user_id == null)
                                 <button wire:click="$emit('assignCase', {{ $case->id }})"><abbr
@@ -110,12 +144,14 @@
                             @endif
                             {{-- Asignar usuario --}}
                             @if ($case->status_id == 1)
-                                <button> <abbr title="Asignar usuario"><i wire:click="modalAssignUSer({{ $case->id }})"
+                                <button> <abbr title="Asignar usuario"><i
+                                            wire:click="modalAssignUSer({{ $case->id }})"
                                             class="fa-solid fa-user-tag text-gray-500 text-lg font-bold mb-1 hover:text-orange-500"></i></button>
                             @endif
                             {{-- Ver registro --}}
-                            @if ($case->status_id != 1  )
-                                <button><abbr title="Ver registros"><i wire:click="redirectRecords({{$case->id, }})"
+                            @if ($case->status_id != 1)
+                                <button><abbr title="Ver registros"><i
+                                            wire:click="redirectRecords({{ $case->id }})"
                                             class="fa-solid fa-folder text-gray-500 text-lg font-bold mb-1 ml-3 hover:text-blue-500"></i></button>
                             @endif
                             {{-- Deshabilitar --}}
