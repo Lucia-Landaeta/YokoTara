@@ -11,7 +11,7 @@ class RecordController extends Controller
 {
     public function index($case)
     {
-        $case = CaseAnimal::find($case);
+        $case = CaseAnimal::withTrashed()->find($case);
         return view('moder.records.index',compact('case'));
     }
 

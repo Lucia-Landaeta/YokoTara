@@ -10,7 +10,7 @@
         {{-- </div> --}}
     {{-- </section> --}}
     <div class="container">
-        <h1 class="text-gray-500 text-2xl mb-1 mt-4">Registros del caso ID: {{$case->id}} Peudonumo:{{$case->pseudonym}}</h1>
+        <h1 class="text-gray-500 text-2xl mb-1 mt-4">Registros del caso ID: {{$case->id}} Peudonimo:{{$case->pseudonym}}</h1>
         @livewire('moder.show-records', ['case' => $case])
     </div>
 

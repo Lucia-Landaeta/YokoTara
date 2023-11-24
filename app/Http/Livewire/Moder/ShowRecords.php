@@ -13,7 +13,7 @@ class ShowRecords extends Component
 {
     use WithFileUploads;
 
-    public $case, $open = false, $situation, $user, $observation, $identifier, $images = [];
+    public $case, $open = false, $situation, $user, $observation, $identifier, $images = [], $showImages, $openImages= false;
 
     public function mount()
     {
@@ -39,7 +39,7 @@ class ShowRecords extends Component
         'situation' => 'La situación de registro es obligatoria.',
         'observation' => 'La observación es obligatoria.',
         'user' => 'El usuario es obligatorio.',
-        'images.max' => 'Se pueden cargar 4 imagen como maximo',
+        'images.max' => 'Se pueden cargar 4 imagen como maximo. Por favor vuelva a seleccionarlas.',
         'images.*.image' => 'Solo se permiten imagenes'
     ];
     public function updatedImages()
@@ -61,7 +61,6 @@ class ShowRecords extends Component
         ]);
         if ($this->images) {
             foreach ($this->images as $image) {
-                // dd($image);
                 Image::create([
                     'url' => $image->store('records', 'public'),
                     'imageable_id' => $record->id,
@@ -72,5 +71,10 @@ class ShowRecords extends Component
         $this->reset(['open', 'situation', 'observation', 'user']);
         $this->identifier = rand();
         $this->emit('alertSuccessP', 'El registro se creo exitosamente');
+    }
+
+    public function showImages(RecordCase $record){
+        $this->showImages = $record->images;
+        $this->openImages =true;
     }
 }

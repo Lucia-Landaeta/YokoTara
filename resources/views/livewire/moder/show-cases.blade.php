@@ -36,8 +36,12 @@
                     <a class="cursor-pointer transition-colors block py-2 px-4 text-sm text-gray-900 font-bold rounded hover:bg-orange-400 hover:text-white py-3" wire:click="$set('status',2)" x-on:click="open=false">Control</a>
                     <hr class="py-2">
                     <a class="cursor-pointer transition-colors block py-2 px-4 text-sm text-gray-900 font-bold rounded hover:bg-orange-400 hover:text-white py-3" wire:click="$set('status',1)" x-on:click="open=false">Activo</a>
+                    <hr class="py-2">
+                    <a class="cursor-pointer transition-colors block py-2 px-4 text-sm text-gray-900 font-bold rounded hover:bg-orange-400 hover:text-white py-3" wire:click="$set('status',3)" x-on:click="open=false">Finalizados</a>
                 </div>
             </div>
+            {{-- ******************** --}}
+            
         </div>
         {{-- table --}}
         <table class="w-full border-collapse bg-white rounded-md text-left mt-3 text-sm text-gray-500">
@@ -110,7 +114,7 @@
                                             class="fa-solid fa-user-tag text-gray-500 text-lg font-bold mb-1 hover:text-orange-500"></i></button>
                             @endif
                             {{-- Ver registro --}}
-                            @if ($case->status_id == 2)
+                            @if ($case->status_id != 1  )
                                 <button><abbr title="Ver registros"><i wire:click="redirectRecords({{$case->id, }})"
                                             class="fa-solid fa-folder text-gray-500 text-lg font-bold mb-1 ml-3 hover:text-blue-500"></i></button>
                             @endif

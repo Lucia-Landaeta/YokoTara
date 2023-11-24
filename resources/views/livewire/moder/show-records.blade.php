@@ -1,7 +1,9 @@
 <div>
-    <button wire:click="$set('open',true)"
-        class="block text-sm text-center ml-2 mt-6 mb-3 bg-transparent hover:bg-cyan-500 text-cyan-700 font-semibold hover:text-white py-2 px-8 border border-cyan-500 hover:border-transparent rounded-xl">
-        Nuevo Registro</button>
+    @if ($case->status_id != 3)
+        <button wire:click="$set('open',true)"
+            class="block text-sm text-center ml-2 mt-6 mb-3 bg-transparent hover:bg-cyan-500 text-cyan-700 font-semibold hover:text-white py-2 px-8 border border-cyan-500 hover:border-transparent rounded-xl">
+            Nuevo Registro</button>
+    @endif
     <table class="w-full border-collapse bg-white rounded-md text-left mt-3 text-sm text-gray-500">
         <thead class="bg-amber-400">
             <tr>
@@ -33,9 +35,7 @@
                             {{ $record->user->name }} {{ $record->user->lastname }}</p>
                     </td>
                     <td class="p-4 font-normal text-gray-900">
-                        {{-- <img class="h-36 w-full object-cover"
-                        src="{{ $record->images ? Storage::url($record->images[0]->url) : 'https://imagen_prueba.com' }}"
-                        alt=""> --}}
+                        <span class="cursor-pointer" wire:click="showImages({{ $record->id }})">Fotos</span>
                     </td>
                 </tr>
             @empty
@@ -94,7 +94,7 @@
                             @endif
                         @endforeach --}}
                         <div class="grid grid-cols-4 gap-4 relative bottom-20 left-2">
-                            @for ($i = 0; $i <= (count($images)-1)&&$i<4; $i++)
+                            @for ($i = 0; $i <= count($images) - 1 && $i < 4; $i++)
                                 <div>
                                     @if (substr($images[$i]->getFilename(), strrpos($images[$i]->getFilename(), '.')) != '.pdf')
                                         <img class="object-scale-down w-16 h-16 "
@@ -133,6 +133,29 @@
                 class="disabled:opacity-25">
                 Crear Registro
             </x-button>
+        </x-slot>
+    </x-dialog-modal>
+
+    <x-dialog-modal wire:model='openImages'>
+        <x-slot name='title'>
+            Fotos del registro
+        </x-slot>
+        <x-slot name='content'>
+            @if (count($records) != 0)
+                @if ($showImages)
+                    <div class="columns-1 ">
+                        @foreach ($showImages as $image)
+                            <div class="w-full"><img class="w-3/6 my-3 mx-auto"
+                                    src="{{ $record->images ? Storage::url($image->url) : 'https://imagen_prueba.com' }}"
+                                    alt=""></div>
+                            <hr>
+                        @endforeach
+                    </div>
+                @endif
+            @endif
+
+        </x-slot>
+        <x-slot name='footer'>
         </x-slot>
     </x-dialog-modal>
 </div>

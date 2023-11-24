@@ -18,7 +18,7 @@ class ShowCases extends Component
     public $search, $status, $aUser, $myCases;
     public $open =false, $user, $name_user ='', $lastname_user, $email_user, $locality_user, $phone_user;
     public $openP =false, $post, $title_post, $type_post, $description_post, $date_post, $locality_post, $user_post;
-    public $openU = false, $users, $interested_user, $reason, $case;
+    public $openU = false, $users, $interested_user, $reason, $case, $show = false;
 
     protected $rules = [
         'reason' => 'required',
@@ -34,7 +34,7 @@ class ShowCases extends Component
         if ($this->search) {
             $cases = CaseAnimal::where('pseudonym', 'like', '%' . $this->search . '%')->paginate(7);
         } else {
-            $cases = CaseAnimal::mycase($this->myCases)->status($this->status)->orderBy('status_id','desc')->orderBy('id','desc')->paginate(7);
+            $cases = CaseAnimal::mycase($this->myCases)->status($this->status)->orderBy('status_id','asc')->orderBy('id','desc')->withTrashed()->paginate(7);
         }
         return view('livewire.moder.show-cases',compact('cases'));
     }
