@@ -8,6 +8,7 @@ use App\Models\Animal;
 use App\Models\CaseAnimal;
 use App\Models\Image;
 use App\Models\Notice;
+use App\Models\NoticeStatus;
 use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -29,7 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RolePermissionSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(StatusSeeder::class);
-
+        $this->call(NoticeStatusSeeder::class);
         //Carga factories
         $postCol = Post::factory(80)->create();
 

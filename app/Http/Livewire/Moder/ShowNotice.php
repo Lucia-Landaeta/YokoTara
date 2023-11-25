@@ -23,7 +23,7 @@ class ShowNotice extends Component
     public function render()
     {
         $this->user = User::find(1);
-        $notices = Notice::paginate(7);
+        $notices = Notice::orderBy('id','desc')->paginate(7);
         return view('livewire.moder.show-notice', compact('notices'));
     }
     protected $rules = [
@@ -81,6 +81,8 @@ class ShowNotice extends Component
         ]);
         $user = User::find($this->notice->user_id);
         $this->reset(['openAccept', 'reason']);
+        $this->notice->notice_status_id = 2;
+        $this->notice->save();
         $this->notice->delete();
         $this->emit('alertSuccessP', 'Aviso aceptado con exito.');
         $this->sendMail($user,$post,$this->reason,true);
@@ -104,6 +106,8 @@ class ShowNotice extends Component
             'case_animal_id' => $post->caseAnimal->id
         ]);
         $user = User::find($this->notice->user_id);
+        $this->notice->notice_status_id = 3;
+        $this->notice->save();
         $this->notice->delete();
         $this->reset(['openReject', 'reason']);
         $this->emit('alertSuccessP', 'Aviso rechazado con exito.');

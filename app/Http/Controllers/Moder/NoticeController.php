@@ -12,4 +12,7 @@ class NoticeController extends Controller
     {
         return view('moder.notice.index');
     }
+    public function show(){
+        return view('myNotices-show');
+    }
 }

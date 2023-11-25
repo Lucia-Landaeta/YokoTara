@@ -27,7 +27,8 @@ class CreateNotice extends Component
             'description' => $this->description,
             'contact_number' => $this->contact_number,
             'user_id' => auth()->user()->id,
-            'post_id' => $this->post->id
+            'post_id' => $this->post->id,
+            'notice_status_id' => 1
         ]);
 
         $this->reset(['open', 'description', 'contact_number']);

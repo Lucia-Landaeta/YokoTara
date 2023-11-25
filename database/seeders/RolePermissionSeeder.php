@@ -36,6 +36,7 @@ class RolePermissionSeeder extends Seeder
         // Permisos sobre avisos
         Permission::create(['name' => 'showNotice']);
         Permission::create(['name' => 'deleteNotice']);
+        Permission::create(['name' => 'showMyNotice']);
         // ROLES
         $roleAdmin = Role::create(['name' => 'Admin']);
         $roleModer = Role::create(['name' => 'Moder']);
@@ -45,5 +46,6 @@ class RolePermissionSeeder extends Seeder
 
         $roleAdmin->givePermissionTo([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,15,16]);
         $roleModer->givePermissionTo([8, 9, 10, 11, 12, 13, 14,15,16]);
+        $roleUser->givePermissionTo([17]);
     }
 }

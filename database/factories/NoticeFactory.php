@@ -21,7 +21,8 @@ class NoticeFactory extends Factory
             'description' => $this->faker->sentence(10),
             'contact_number' => $this->faker->numberBetween(15000000, 159999999),
             'user_id' => '2',
-            'post_id' => Post::all()->random()->id
+            'post_id' => Post::all()->random()->id,
+            'notice_status_id' => 1
         ];
     }
 }

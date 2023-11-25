@@ -17,6 +17,8 @@ return new class extends Migration
             $table->bigInteger('contact_number');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('post_id')->constrained()->onDelete('cascade');
+            $table->foreignId('notice_status_id')->nullable()->constrained()->onDelete('set null');;
+            $table->softDeletes();
             $table->timestamps();
         });
     }

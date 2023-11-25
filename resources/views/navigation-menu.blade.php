@@ -44,6 +44,11 @@
                             Aviso interes
                         </x-nav-link>
                     @endcan
+                    @can('showMyNotice')
+                    <x-nav-link href="{{ route('myNotices.show') }}" active="{{ request()->routeIs('myNotice.*') }}">
+                        Mis intereses
+                    </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
