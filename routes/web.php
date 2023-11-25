@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactanosController;
 use App\Http\Controllers\DonationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -30,6 +31,9 @@ Route::get('posts/{post}',[PostController::class,'show'])->name('posts.show');
 Route::get('donar',[DonationController::class,'index'])->name('donations.index');
 Route::get('donar/{id}',[DonationController::class,'show'])->name('donations.show');
 // Mis intereses
-Route::get('Mis-intereses',[NoticeController::class,'show'])->name('myNotices.show');
+Route::get('mis-intereses',[NoticeController::class,'show'])->name('myNotices.show');
+// Contactanos
+Route::get('contactanos',[ContactanosController::class,'index'])->name('contact.index');
+Route::post('contactanos',[ContactanosController::class,'store'])->name('contact.store');
 
 

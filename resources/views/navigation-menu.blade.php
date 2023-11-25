@@ -45,7 +45,7 @@
                         </x-nav-link>
                     @endcan
                     @can('showMyNotice')
-                    <x-nav-link href="{{ route('myNotices.show') }}" active="{{ request()->routeIs('myNotice.*') }}">
+                    <x-nav-link href="{{ route('myNotices.show') }}" active="{{ request()->routeIs('myNotices.*') }}">
                         Mis intereses
                     </x-nav-link>
                     @endcan

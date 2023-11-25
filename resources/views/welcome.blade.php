@@ -42,7 +42,7 @@
                     </figure>
                 </article>
             </a>
-            <a href="">
+            <a href="{{route('contact.index')}}">
                 <article class="transitionArt">
                     <figure>
                         <img class="rounded-xl h-36 w-full object-cover" src="{{ asset('img/home/content3.jpg') }}"
@@ -55,7 +55,7 @@
                     </figure>
                 </article>
             </a>
-            <a href="">
+            <a href="{{route('donations.index')}}">
                 <article class="transitionArt">
                     <figure>
                         <img class="rounded-xl h-36 w-full object-cover" src="{{ asset('img/home/content5.jpg') }}"
