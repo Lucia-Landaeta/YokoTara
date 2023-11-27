@@ -6,7 +6,7 @@
             <div class="w-full md:w-3/4 lg:w-1/2">
                 <h1 class="text-white font-bold text-4xl">Responsabilidad y amor</h1>
                 <p class="text-white text-2xl mb-4">Porque ellos se lo merecen</p>
-                <a href="{{route('posts.index')}}"
+                <a href="{{ route('posts.index') }}"
                     class="bg-transparent hover:bg-amber-500 text-amber-600 font-semibold hover:text-white py-2 px-4 border border-amber-500 hover:border-transparent rounded-full">
                     Ver publicaciones
                 </a>
@@ -17,7 +17,7 @@
     <section class="mt-24">
         <h1 class="text-cyan-600 text-center text-3xl mb-6">Contenido</h1>
         <div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
-            <a href="">
+            <a href="{{ route('info') }}">
                 <article class="transitionArt">
                     <figure>
                         <img class="rounded-xl h-36 w-full object-cover" src="{{ asset('img/home/content2.jpg') }}"
@@ -29,7 +29,7 @@
                     <p class="text-md text-gray-500">¡Conoce quienes somos y nuestros objetivos!</p>
                 </article>
             </a>
-            <a href="">
+            <a href="{{ route('posts.index') }}">
                 <article class="transitionArt">
                     <figure>
                         <img class="rounded-xl h-36 w-full object-cover" src="{{ asset('img/home/content4.jpg') }}"
@@ -42,7 +42,7 @@
                     </figure>
                 </article>
             </a>
-            <a href="{{route('contact.index')}}">
+            <a href="{{ route('contact.index') }}">
                 <article class="transitionArt">
                     <figure>
                         <img class="rounded-xl h-36 w-full object-cover" src="{{ asset('img/home/content3.jpg') }}"
@@ -55,7 +55,7 @@
                     </figure>
                 </article>
             </a>
-            <a href="{{route('donations.index')}}">
+            <a href="{{ route('donations.index') }}">
                 <article class="transitionArt">
                     <figure>
                         <img class="rounded-xl h-36 w-full object-cover" src="{{ asset('img/home/content5.jpg') }}"
@@ -69,7 +69,17 @@
             </a>
         </div>
     </section>
-
+    {{-- SECCIÓN PUBICACIONES POSTULACIÓN --}}
+    <section class="mt-24 bg-sky-800 py-12">
+        <h1 class="text-center font-bold text-amber-500 text-3xl">¿Querés ayudar?</h1>
+        <p class="text-center text-white text-md">Mirá nuestra sección de postulación y fijate como puedes ayudar.</p>
+        <div class="flex justify-center mt-4">
+            <a href=""
+                class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 border-b-4 border-amber-700 hover:border-amber-500 rounded-xl">
+                Postulación
+            </a>
+        </div>
+    </section>
     {{-- SECCIÓN PUBLICACIONES RECIENTES --}}
     <section class="mt-24">
         <h1 class="text-center text-3xl text-cyan-600">Publicaciones</h1>
@@ -77,21 +87,11 @@
         {{-- Cards de publicaciones --}}
         <div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
             @foreach ($posts as $post)
-                <x-own.post-card :post='$post'/>
+                <x-own.post-card :post='$post' />
             @endforeach
         </div>
         <div class="text-center py-6 px-6">
             <a href="{{ route('posts.index') }}" class="text-gray-600"> Ver todas las publicaciones</a>
         </div>
     </section>
-
-    {{-- REVISAR TOOLTIP PARA INCORPORAR --}}
-    {{-- <div class="relative py-3 sm:max-w-xl sm:mx-auto">
-          <div class="group cursor-pointer relative inline-block border-b border-gray-400 w-28 text-center">Hover over me
-            <div class="opacity-0 w-28 bg-black text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 bottom-full -left-1/2 ml-14 px-3 pointer-events-none">
-              Tooltip center
-              <svg class="absolute text-black h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"/></svg>
-            </div>
-          </div>
-        </div> --}}
 </x-app-layout>

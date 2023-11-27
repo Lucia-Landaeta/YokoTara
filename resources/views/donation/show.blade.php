@@ -1,5 +1,4 @@
 <?php
-// Step 1: Require the library from your Composer vendor folder
 require base_path('vendor/autoload.php');
 
 use MercadoPago\Client\Payment\PaymentClient;
@@ -7,21 +6,24 @@ use MercadoPago\Exceptions\MPApiException;
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
 
-// Step 2: Set production or sandbox access token
 MercadoPagoConfig::setAccessToken(config('services.mercadopago.token'));
-
-// Step 3: Initialize the API client
 $client = new PreferenceClient();
+
 $preference = $client->create([
     'items' => [
         [
-            'title' => 'Meu produto',
+            'title' => 'Donación',
             'quantity' => 1,
-            'currency_id' => 'BRL',
+            'currency_id' => 'ARS',
             'unit_price' => $donation,
         ],
     ],
 ]);
+$preference->back_urls = [
+    'success' => 'http://127.0.0.1:8000/captur',
+    'failure' => 'http://www.tu-sitio/failure',
+];
+// dd($preference);
 
 ?>
 <x-app-layout>
@@ -36,12 +38,16 @@ $preference = $client->create([
                 class="border-r border-b border-l border-gray-200 lg:border-l-0 lg:border-t lg:border-gray-200 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                 <div class="mb-8">
                     <h3 class="text-cyan-600 font-bold text-xl mb-2">Gracias por tu colaboración</h3>
-                    <p class="text-gray-500 text-lg indent-3">Toda donación realizada se destina al pago de tratamientos, estudios y
-                        honorarios veterinarios, compra de insumos y alimento de los animalitos que se encuentran en espera de un
+                    <p class="text-gray-500 text-lg indent-3">Toda donación realizada se destina al pago de tratamientos,
+                        estudios y
+                        honorarios veterinarios, compra de insumos y alimento de los animalitos que se encuentran en
+                        espera de un
                         hogar.</p>
-                    <p class="text-gray-500 text-lg indent-3">Agradecemos tu colaboración y que te involucres para lograr una mejor calidad de vida para los animalitos que lo necesitan.</p>
+                    <p class="text-gray-500 text-lg indent-3">Agradecemos tu colaboración y que te involucres para
+                        lograr una mejor calidad de vida para los animalitos que lo necesitan.</p>
                 </div>
-                <p class="text-gray-700 font-bold text-lg">Donación a realizar: <span class="text-amber-500">${{ $donation }}</span> </p>
+                <p class="text-gray-700 font-bold text-lg">Donación a realizar: <span
+                        class="text-amber-500">${{ $donation }}</span> </p>
                 <div class="">
                     <div id="wallet_container"></div>
                     <a href="{{ route('donations.index') }}"
@@ -52,8 +58,7 @@ $preference = $client->create([
             </div>
         </div>
     </div>
-
-
+    <div class="h-16"></div>
     {{-- SDK MercadoPago.js --}}
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script>
@@ -62,7 +67,7 @@ $preference = $client->create([
         mp.bricks().create("wallet", "wallet_container", {
             initialization: {
                 preferenceId: "{{ $preference->id }}",
-                redirectMode: "modal",
+                redirectMode: "modal"
             },
         });
     </script>

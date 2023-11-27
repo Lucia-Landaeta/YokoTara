@@ -12,6 +12,11 @@
             'route' => route('info'),
             'active' => request()->routeIs('info'),
         ],
+        [
+            'name' => 'Donaciones',
+            'route' => route('donations.index'),
+            'active' => request()->routeIs('donations.*'),
+        ],
     ];
 @endphp
 
