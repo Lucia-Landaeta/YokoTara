@@ -19,10 +19,10 @@ $preference = $client->create([
         ],
     ],
 ]);
-$preference->back_urls = [
-    'success' => 'http://127.0.0.1:8000/captur',
+$preference->back_urls = array(
+    'success' => 'https://www.google.com/',
     'failure' => 'http://www.tu-sitio/failure',
-];
+);
 // dd($preference);
 
 ?>

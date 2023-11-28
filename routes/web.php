@@ -35,5 +35,7 @@ Route::get('mis-intereses',[NoticeController::class,'show'])->name('myNotices.sh
 // Contactanos
 Route::get('contactanos',[ContactanosController::class,'index'])->name('contact.index');
 Route::post('contactanos',[ContactanosController::class,'store'])->name('contact.store');
+// Registro de gastos
+Route::get('gastos',[DonationController::class,'expensesRecord'])->name('expenses.expensesRecord');
 
 

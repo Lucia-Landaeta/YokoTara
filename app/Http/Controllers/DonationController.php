@@ -22,4 +22,10 @@ class DonationController extends Controller
     public function load(){
         return view('admin.donations.load');
     }
+    public function pay(){
+        return view('admin.donations.pay');
+    }
+    public function expensesRecord(){
+        return view('donation.expensesRecord');
+    }
 }

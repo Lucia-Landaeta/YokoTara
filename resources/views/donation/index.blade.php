@@ -14,18 +14,19 @@
             <h3 class="text-cyan-600 font-bold text-xl mb-2">Sistema de donaciones</h3>
             <p class="text-gray-500 text-base indent-3">Puedes ver el monto actual de las donaciones que se han
                 realizado. </p>
-            <p class="text-gray-500 text-base indent-3">El destino de los fondos conseguidos son evaluados y decididos
+            <p class="text-gray-500 text-base indent-3 mb-4">El destino de los fondos conseguidos son evaluados y decididos
                 por los
                 administradores y moderadores del grupo (<a class="text-blue-500 hover:underline" href="">si te
                     interesa ser parte podés postularte</a>), todos los gastos realizados serán informados en el sitio.
             </p>
+            <a href="{{route('expenses.expensesRecord')}}" class="text-cyan-600 hover:text-sky-300 hover:underline font-bold text-base mb-2">Registro de gastos</a>
         </section>
         
         <div class="container text-center mt-8 rounded-md" style="background-image: url({{ asset('img/port4.jpg') }})">
             <hr>
             <h2 class="text-amber-500 text-2xl mb-4 mt-6 font-bold">Monto actual de donaciones</h2>
             <div class="animate-bounce mt-10 mb-12">
-                <p class="text-4xl"><i class="fa-solid fa-hand-holding-heart mr-4"></i>${{$donations}}</p>
+                <p class="text-4xl"><i class="fa-solid fa-hand-holding-heart mr-4"></i>${{$donations}}</p> 
             </div>
             <hr>
         </div>

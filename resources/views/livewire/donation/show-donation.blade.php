@@ -35,7 +35,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4">No existen donaciones registrsdas</td>
+                    <td colspan="4">No existen donaciones registradas</td>
                 </tr>
             @endforelse
         </tbody>
@@ -65,7 +65,7 @@
                 Cancelar
             </x-danger-button>
             <x-button wire:click='recover' wire:loading.attr="disabled" class="disabled:opacity-25">
-                Crear Rol
+                Cargar
             </x-button>
         </x-slot>
     </x-dialog-modal>
