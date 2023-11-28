@@ -73,7 +73,6 @@
                     <x-input-error class="mt-1" for="type" />
                 </div>
                 <div class="mb-4">
-                    {{-- @livewire('select') --}}
                     <livewire:select wire:model='locality' /> 
                     <x-input-error class="mt-1" for="locality" />
                 </div>

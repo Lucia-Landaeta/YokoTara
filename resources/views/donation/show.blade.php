@@ -8,7 +8,7 @@ use MercadoPago\Client\Preference\PreferenceClient;
 
 MercadoPagoConfig::setAccessToken(config('services.mercadopago.token'));
 $client = new PreferenceClient();
-
+// Se crea la preferencia de MP, con los detalles de pago
 $preference = $client->create([
     'items' => [
         [
@@ -19,16 +19,14 @@ $preference = $client->create([
         ],
     ],
 ]);
+// urls de redirección
 $preference->back_urls = array(
     'success' => 'https://www.google.com/',
     'failure' => 'http://www.tu-sitio/failure',
 );
-// dd($preference);
-
 ?>
 <x-app-layout>
     <div class="h-16"></div>
-
     <div class="container mt-8">
         <div class="max-w-sm w-full lg:max-w-full lg:flex bg-white">
             <div class="h-52 lg:h-auto lg:w-60 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
@@ -61,6 +59,7 @@ $preference->back_urls = array(
     <div class="h-16"></div>
     {{-- SDK MercadoPago.js --}}
     <script src="https://sdk.mercadopago.com/js/v2"></script>
+    {{-- Se crea el botod de pago y de vincula a la preferencia creada --}}
     <script>
         const mp = new MercadoPago("{{ config('services.mercadopago.key') }}");
         const bricksBuilder = mp.bricks();

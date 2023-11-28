@@ -124,7 +124,7 @@
             </x-danger-button>
             @if ($notice)
             <x-button wire:click="reject({{$notice->id}})" wire:loading.attr="disabled" class="disabled:opacity-25">
-                Acceptar
+                Aceptar
             </x-button>
             @endif
         </x-slot>

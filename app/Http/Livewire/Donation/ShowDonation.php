@@ -27,6 +27,7 @@ class ShowDonation extends Component
         'transaction_id.unique' => 'Esta operación ya fue registrada.',
     ];
 
+    // Se recupera la información de la operación, a traves de la SDK de MP y se registra la donación
     public function recover()
     {
         $this->validate();
@@ -34,7 +35,6 @@ class ShowDonation extends Component
             MercadoPagoConfig::setAccessToken(config('services.mercadopago.token'));
             $client = new PaymentClient();
             $payment = $client->get($this->transaction_id);
-            // dd($payment);
             Donation::create([
                 'transaction_id' => $payment->id,
                 'date' => Carbon::parse($payment->date_approved)->format('Y-m-d'),

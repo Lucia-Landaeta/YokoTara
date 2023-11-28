@@ -7,7 +7,6 @@ use App\Models\Post;
 use App\Models\RecordCase;
 use App\Models\User;
 use Carbon\Carbon;
-use Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 

@@ -15,10 +15,11 @@ class CreateNotice extends Component
         return view('livewire.moder.create-notice');
     }
     protected $rules = [
-        'contact_number' => 'required',
+        'contact_number' => 'required|numeric',
     ];
     protected $messages = [
         'contact_number' => 'El teléfono de contacto es obligatorio.',
+        'contact_number.numeric' => 'El teléfono debe ser un valor numérico.',
     ];
     public function save()
     {

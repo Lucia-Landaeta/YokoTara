@@ -40,11 +40,9 @@
             @endforelse
         </tbody>
     </table>
-    @if (count($donations) > 7)
-        <div class="container bg-white py-4 mt-1">
-            {{ $donations->links() }}
-        </div>
-    @endif
+    <div class="container bg-white py-4 mt-1">
+        {{ $donations->links() }}
+    </div>
 
     <x-dialog-modal wire:model='open'>
         <x-slot name='title'>

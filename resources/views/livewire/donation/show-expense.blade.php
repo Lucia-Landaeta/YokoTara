@@ -39,12 +39,9 @@
             @endforelse
         </tbody>
     </table>
-
-    @if (count($expenses) > 7)
-        <div class="container bg-white py-4 mt-1">
-            {{ $expenses->links() }}
-        </div>
-    @endif
+    <div class="container bg-white py-4 mt-1">
+        {{ $expenses->links() }}
+    </div>
 
     <x-dialog-modal wire:model='open'>
         <x-slot name='title'>
@@ -130,8 +127,8 @@
                                         src="{{ $expense->images ? Storage::url($file->url) : 'https://imagen_prueba.com' }}"
                                         alt=""></div>
                             @else
-                                <iframe class="w-3/6 my-3 mx-auto" width="400" height="400" src='{{ Storage::url($file->url) }}'
-                                    frameborder="0"></iframe>
+                                <iframe class="w-3/6 my-3 mx-auto" width="400" height="400"
+                                    src='{{ Storage::url($file->url) }}' frameborder="0"></iframe>
                             @endif
                             <hr>
                         @endforeach

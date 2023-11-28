@@ -32,13 +32,14 @@ class CreatePost extends Component
         'type_animal' => 'required',
         'gender' => 'required',
         'stage' => 'required',
-        'pseudonym' => 'required'
+        'pseudonym' => 'required|unique:App\Models\CaseAnimal,pseudonym'
     ];
     protected $messages = [
         'locality' => 'El campo localidad es obligatorio.',
         'type_animal' => 'El campo tipo de animal es obligatorio.',
         'type' => 'El campo tipo de publicación es obligatorio.',
         'stage' => 'El campo edad es obligatorio.',
+        'pseudonym.unique' => 'El pseudonimo debe ser único. Éste ya se encuentra registrado.'
     ];
     public function save()
     {
@@ -90,7 +91,6 @@ class CreatePost extends Component
         $cases_db = CaseAnimal::all();
         return view('livewire.moder.create-post', compact('cases_db'));
     }
-
 
     public function doSomething($total)
     {

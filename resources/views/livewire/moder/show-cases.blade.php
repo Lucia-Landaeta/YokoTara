@@ -249,7 +249,7 @@
             @if ($case)
                 <x-button wire:click="assignUser({{ $case->id }})" wire:loading.attr="disabled"
                     class="disabled:opacity-25">
-                    Acceptar
+                    Aceptar
                 </x-button>
             @endif
 

@@ -19,7 +19,6 @@ class Select extends Component
     // fun. que carga el listado de las ciudades cada vez que la prop. province se modifica
     public function updatedProvince($value){
         $this->localities = Locality::where('province_id',$value)->get();
-        // $this->locality = $this->localities->first()->id ?? null;
     }
     public function render()
     {
