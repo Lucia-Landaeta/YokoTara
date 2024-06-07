@@ -7,8 +7,7 @@
     <table class="w-full border-collapse bg-white rounded-md text-left mt-3 text-sm text-gray-500">
         <thead class="bg-amber-400">
             <tr>
-                <th scope="col" class="p-4 font-medium text-gray-900">Id</th>
-                <th scope="col" class="p-4 font-medium text-gray-900">Fecha creación</th>
+                <th scope="col" class="p-4 pl-8 font-medium text-gray-900">Fecha creación</th>
                 <th scope="col" class="p-4 font-medium text-gray-900">Situación</th>
                 <th scope="col" class="p-4 font-medium text-gray-900">Observación</th>
                 <th scope="col" class="p-4 font-medium text-gray-900">Usuario responsable</th>
@@ -18,10 +17,7 @@
         <tbody class="divide-y divide-gray-100 border-t border-gray-100">
             @forelse ($records as $record)
                 <tr class="hover:bg-gray-50">
-                    <td class="p-4 font-normal text-gray-900">
-                        {{ $record->id }}
-                    </td>
-                    <td class="p-4 font-normal text-gray-900">
+                    <td class="p-4 pl-8 font-normal text-gray-900">
                         {{ $record->date }}
                     </td>
                     <td class="p-4 font-normal text-gray-900">

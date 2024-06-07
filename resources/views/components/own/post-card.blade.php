@@ -1,6 +1,6 @@
 @props(['post'])
 <article class="card">
-    <img class="h-36 w-full object-cover"
+    <img class="h-52 w-full object-cover"
         src="{{ $post->image ? Storage::url($post->image->url) : 'https://imagen_prueba.com' }}"
         alt="">
     <div class="px-6 py-4">

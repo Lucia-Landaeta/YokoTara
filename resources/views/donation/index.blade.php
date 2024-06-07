@@ -12,7 +12,7 @@
         </section>
         <section class="container mt-6 ">
             <h3 class="text-cyan-600 font-bold text-xl mb-2">Sistema de donaciones</h3>
-            <p class="text-gray-500 text-base indent-3">Puedes ver el monto actual de las donaciones que se han
+            <p class="text-gray-500 text-base indent-3">Podés ver el monto actual de las donaciones que se han
                 realizado. </p>
             <p class="text-gray-500 text-base indent-3 mb-4">El destino de los fondos conseguidos son evaluados y decididos
                 por los
@@ -24,7 +24,7 @@
         
         <div class="container text-center mt-8 rounded-md" style="background-image: url({{ asset('img/port4.jpg') }})">
             <hr>
-            <h2 class="text-amber-500 text-2xl mb-4 mt-6 font-bold">Monto actual de donaciones</h2>
+            <h2 class="text-amber-500 text-2xl mb-4 mt-6 font-bold">Donaciones actuales</h2>
             <div class="animate-bounce mt-10 mb-12">
                 <p class="text-4xl"><i class="fa-solid fa-hand-holding-heart mr-4"></i>${{$donations}}</p> 
             </div>
@@ -35,7 +35,7 @@
             <div>
                 <h2 class="container text-amber-500 text-center text-2xl mb-1 mt-6 font-bold">Transferencia
                 </h2>
-                <p class="container text-gray-500 text-center text-sm mb-5 mt-1">(Doná monto el que quieras
+                <p class="container text-gray-500 text-center text-sm mb-5 mt-1">(Doná el monto que quieras
                     directamente.)</p>
                 <p class="container text-center text-gray-500 text-md mb-2">Cuenta Mercado Pago</p>
                 <p class="container text-center text-gray-500 text-md mb-2">CBU: XXXXXXXXXXXXXXXXXXXXXX</p>

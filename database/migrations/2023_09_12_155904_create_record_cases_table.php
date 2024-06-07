@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('record_cases', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->enum('situation',['En adopción','Perdido','Encontrado','Transito','Recuperado','Adoptado','Control', 'Interés aceptado', 'Interés rechazado']);
+            $table->enum('situation',['En adopción','Perdido','Encontrado','Castración','Recuperado','Adoptado','Control', 'Interés aceptado', 'Interés rechazado','Cerrado']);
             $table->string('observation');
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('case_animal_id')->constrained()->onDelete('cascade');

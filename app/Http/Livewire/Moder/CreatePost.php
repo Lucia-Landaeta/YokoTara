@@ -24,7 +24,7 @@ class CreatePost extends Component
     }
 
     protected $rules = [
-        'title' => 'required|max:20',
+        'title' => 'required|max:45',
         'content' => 'required',
         'locality' => 'required',
         'image' => 'required|image|max:2048',

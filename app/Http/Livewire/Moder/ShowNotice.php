@@ -23,7 +23,7 @@ class ShowNotice extends Component
     public function render()
     {
         $this->user = User::find(1);
-        $notices = Notice::orderBy('id','desc')->paginate(7);
+        $notices = Notice::where('notice_status_id',1)->orderBy('id','desc')->paginate(7);
         return view('livewire.moder.show-notice', compact('notices'));
     }
     protected $rules = [

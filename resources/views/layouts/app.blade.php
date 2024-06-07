@@ -55,7 +55,7 @@ $debugbar['messages']->addMessage('hello world!');
                     </a>
                 </div>
                 <p class="max-w-xs mt-4 text-sm text-gray-600">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, accusantium.
+                    Amor y participación puede marcar la diferencia para cientos de animalitos.
                 </p>
             </div>
             {{-- Menu --}}

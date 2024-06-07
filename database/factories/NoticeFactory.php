@@ -18,11 +18,11 @@ class NoticeFactory extends Factory
     public function definition(): array
     {
         return [
-            'description' => $this->faker->sentence(10),
+            // 'description' => $this->faker->sentence(10),
             'contact_number' => $this->faker->numberBetween(15000000, 159999999),
-            'user_id' => '2',
-            'post_id' => Post::all()->random()->id,
-            'notice_status_id' => 1
+            // 'user_id' => '2',
+            // 'post_id' => Post::all()->random()->id,
+            // 'notice_status_id' => 1
         ];
     }
 }

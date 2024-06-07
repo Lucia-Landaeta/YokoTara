@@ -55,8 +55,7 @@
         <table class="w-full border-collapse bg-white rounded-md text-left mt-3 text-sm text-gray-500">
             <thead class="bg-amber-400">
                 <tr>
-                    <th scope="col" class="p-4 font-medium text-gray-900">Id</th>
-                    <th scope="col" class="p-4 font-medium text-gray-900">Descripción</th>
+                    <th scope="col" class="p-4 font-medium text-gray-900 pl-8">Descripción</th>
                     <th scope="col" class="p-4 font-medium text-center text-gray-900">Publicación</th>
                     <th scope="col" class="p-4 font-medium text-center text-gray-900">Status</th>
                 </tr>
@@ -64,10 +63,7 @@
             <tbody class="divide-y divide-gray-100 border-t border-gray-100">
                 @forelse ($notices as $notice)
                     <tr class="hover:bg-gray-50">
-                        <td class="p-4 font-normal text-gray-900">
-                            {{ $notice->id }}
-                        </td>
-                        <td class="p-4 font-normal text-gray-900">
+                        <td class="p-4 font-normal text-gray-900 pl-8">
                             {{ $notice->description }}
                         </td>
                         <td class="p-4 text-center font-normal text-gray-900">
@@ -106,6 +102,6 @@
     
     <div class="container text-center">
         <p class="text-gray-500 text-base indent-3">Las razones de la decisión tomada por los moderadores es debidamente informada en el email que proporcionó al registrarse.</p>
-        <p class="text-gray-500 text-base">Ante cualquier duda puede <a href="" class="text-blue-500 hover:underline">contactarse con nosotros</a>.</p>
+        <p class="text-gray-500 text-base">Ante cualquier duda puede <a href="{{route('contact.index')}}" class="text-blue-500 hover:underline">contactarse con nosotros</a>.</p>
     </div>
 </div>

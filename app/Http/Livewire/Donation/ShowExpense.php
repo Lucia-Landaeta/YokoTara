@@ -60,7 +60,7 @@ class ShowExpense extends Component
                     ]);
                 }
             }
-            $this->reset(['open', 'description', 'amount', 'date', "errorDate"]);
+            $this->reset(['open', 'description', 'amount', 'date']);
             $this->identifier = rand();
             $this->emit('alertSuccessP', 'El registro de gasto se creo exitosamente');
     }

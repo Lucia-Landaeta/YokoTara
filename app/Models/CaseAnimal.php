@@ -49,7 +49,7 @@ class CaseAnimal extends Model
     // Formato fecha con nombre de dia y mes
     public function dateFormat()
     {
-        $dateC = new Carbon($this->date_publish);
+        $dateC = new Carbon($this->date);
         $date = "" . $dateC->day;
         $date .= "/" . Str::title($dateC->month);
         $date .= "/" . $dateC->year;

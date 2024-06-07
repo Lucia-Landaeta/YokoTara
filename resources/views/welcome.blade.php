@@ -14,63 +14,74 @@
         </div>
     </section>
     {{-- SECCIÓN CONTENIDO --}}
-    <section class="mt-24">
-        <h1 class="text-cyan-600 text-center text-3xl mb-6">Contenido</h1>
-        <div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
+    <section class="mt-16">
+        <h1 class="text-cyan-600 text-center text-3xl mb-12">Conocé</h1>
+        <div class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">
             <a href="{{ route('info') }}">
                 <article class="transitionArt">
-                    <figure>
-                        <img class="rounded-xl h-36 w-full object-cover" src="{{ asset('img/home/content2.jpg') }}"
-                            alt="">
-                    </figure>
-                    <header class="mt-2">
-                        <h1 class="text-center text-xl text-gray-700">Nosotros</h1>
-                    </header>
-                    <p class="text-md text-gray-500">¡Conoce quienes somos y nuestros objetivos!</p>
+                    <div class="md:flex md:-mx-4">
+                        <div class="w-full h-60 md:mx-4 rounded-xl overflow-hidden bg-cover bg-center"
+                            style="background-image: url({{ asset('img/home/content2.jpg') }})">
+                            <div class="bg-gray-900 bg-opacity-40 flex h-full">
+                                <div class="px-10 max-w-xl text-center">
+                                    <h2 class="text-2xl text-white font-bold pt-12">Nosotros</h2>
+                                    <p class="mt-2 text-gray-200 font-bold pt-20">¡Conoce quienes somos y nuestros
+                                        objetivos!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </article>
             </a>
             <a href="{{ route('posts.index') }}">
                 <article class="transitionArt">
-                    <figure>
-                        <img class="rounded-xl h-36 w-full object-cover" src="{{ asset('img/home/content4.jpg') }}"
-                            alt="">
-                        <header class="mt-2">
-                            <h1 class="text-center text-xl text-gray-700">Publicaciones</h1>
-                        </header>
-                        <p class="text-md text-gray-500">Mira las publicaciones de dopciones, perdidos o encontrados.
-                        </p>
-                    </figure>
+                    <div class="md:flex md:-mx-4">
+                        <div class="w-full h-60 md:mx-4 rounded-xl overflow-hidden bg-cover bg-center"
+                            style="background-image: url({{ asset('img/home/content4.jpg') }})">
+                            <div class="bg-gray-900 bg-opacity-40 flex h-full">
+                                <div class="px-10 max-w-xl text-center">
+                                    <h2 class="text-2xl text-white font-bold pt-12">Publicaciones</h2>
+                                    <p class="mt-2 text-gray-200 font-bold pt-14">Mira las publicaciones de dopciones, perdidos o encontrados.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </article>
             </a>
             <a href="{{ route('contact.index') }}">
                 <article class="transitionArt">
-                    <figure>
-                        <img class="rounded-xl h-36 w-full object-cover" src="{{ asset('img/home/content3.jpg') }}"
-                            alt="">
-                        <header class="mt-2">
-                            <h1 class="text-center text-xl text-gray-700">Contactanos</h1>
-                        </header>
-                        <p class="text-md text-gray-500">Ponte en contacto con nosotros por cualquier duda o situación.
-                        </p>
-                    </figure>
+                    <div class="md:flex md:-mx-4">
+                        <div class="w-full h-60 md:mx-4 rounded-xl overflow-hidden bg-cover bg-center"
+                            style="background-image: url({{ asset('img/home/content3.jpg') }})">
+                            <div class="bg-gray-900 bg-opacity-40 flex h-full">
+                                <div class="px-10 max-w-xl text-center">
+                                    <h2 class="text-2xl text-white font-bold pt-12">Contactanos</h2>
+                                    <p class="mt-2 text-gray-200 font-bold pt-16">Ponte en contacto con nosotros por cualquier duda o situación.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </article>
             </a>
             <a href="{{ route('donations.index') }}">
                 <article class="transitionArt">
-                    <figure>
-                        <img class="rounded-xl h-36 w-full object-cover" src="{{ asset('img/home/content5.jpg') }}"
-                            alt="">
-                        <header class="mt-2">
-                            <h1 class="text-center text-xl text-gray-700">Donaciones</h1>
-                        </header>
-                        <p class="text-md text-gray-500">¡Recibimos donaciones!</p>
-                    </figure>
+                    <div class="md:flex md:-mx-4">
+                        <div class="w-full h-60 md:mx-4 rounded-xl overflow-hidden bg-cover bg-center"
+                            style="background-image: url({{ asset('img/home/content5.jpg') }})">
+                            <div class="bg-gray-900 bg-opacity-40 flex h-full">
+                                <div class="px-10 max-w-xl text-center">
+                                    <h2 class="text-2xl text-white font-bold pt-12">Donaciones</h2>
+                                    <p class="mt-2 text-gray-200 font-bold pt-28">¡Recibimos donaciones!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </article>
             </a>
         </div>
     </section>
     {{-- SECCIÓN PUBICACIONES POSTULACIÓN --}}
-    <section class="mt-24 bg-sky-800 py-12">
+    <section class="mt-28 bg-sky-800 py-12 skew-y-1">
         <h1 class="text-center font-bold text-amber-500 text-3xl">¿Querés ayudar?</h1>
         <p class="text-center text-white text-md">Mirá nuestra sección de postulación y fijate como puedes ayudar.</p>
         <div class="flex justify-center mt-4">

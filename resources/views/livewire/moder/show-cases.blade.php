@@ -83,8 +83,7 @@
         <table class="w-full border-collapse bg-white rounded-md text-left mt-3 text-sm text-gray-500">
             <thead class="bg-amber-400">
                 <tr>
-                    <th scope="col" class="p-4 font-medium text-gray-900">Id</th>
-                    <th scope="col" class="p-4 font-medium text-gray-900">Responsable</th>
+                    <th scope="col" class="p-4 pl-8 font-medium text-gray-900">Responsable</th>
                     <th scope="col" class="p-4 font-medium text-gray-900">Pseudonimo</th>
                     <th scope="col" class="p-4 font-medium text-gray-900">Fecha creación</th>
                     <th scope="col" class="p-4 font-medium text-gray-900">Post</th>
@@ -95,10 +94,7 @@
             <tbody class="divide-y divide-gray-100 border-t border-gray-100">
                 @forelse ($cases as $case)
                     <tr class="hover:bg-gray-50">
-                        <td class="p-4 font-normal text-gray-900">
-                            {{ $case['id'] }}
-                        </td>
-                        <td class="p-4 font-normal text-gray-900">
+                        <td class="p-4 pl-8 font-normal text-gray-900">
                             @if ($case->user)
                                 <p class="font-bold text-orange-500 cursor-pointer hover:text-cyan-600"
                                     wire:click="findUser({{ $case['user_id'] }})" class="cursor-pointer">
@@ -138,7 +134,7 @@
                         <td class="p-4 font-normal text-gray-900">
                             {{-- Asignar caso a un moder --}}
                             @if ($case->status_id == 2 && $case->user_id == null)
-                                <button wire:click="$emit('assignCase', {{ $case->id }})"><abbr
+                                <button wire:click="$emit('assignCase', {{ $case->id }})"  wire:key="{{ $case->id }}"><abbr
                                         title="Tomar caso"><i
                                             class="fa-regular fa-check-double text-gray-500 text-lg font-bold mb-1 hover:text-green-500"></i></button>
                             @endif

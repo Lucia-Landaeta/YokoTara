@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Donation;
+use App\Models\Expense;
 use Illuminate\Http\Request;
 
 class DonationController extends Controller
